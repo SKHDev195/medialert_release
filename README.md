@@ -1,2 +1,2 @@
-# medialert_release
+# medialert
 The repository for the MediAlert app
