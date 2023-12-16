@@ -1,4 +1,5 @@
 import 'package:medialert/pages/auth_page/widgets/keep_auth_checkbox.dart';
+import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
 
 import '../widgets/logo.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,15 @@ final class AuthPage extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
+    // ref.listen(getKeepAuthProvider, (previous, next) {
+    //   if ()
+    //   if (next.asData.value!.isEnabled) {
+    //     Navigator.pushNamed(
+    //       context,
+    //       MedicationsPage.routeName,
+    //     );
+    //   }
+    // });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),

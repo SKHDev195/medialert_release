@@ -20,7 +20,9 @@ class KeepAuthCheckbox extends ConsumerWidget {
       initialValue: false,
       activeColor: AppTheme.backgroundColorForNegativeInteractables,
       onChanged: (value) {
-        ref.watch(switchAuthProvider);
+        ref.watch(
+          switchAuthProvider(value!),
+        );
       },
     );
   }
