@@ -25,8 +25,8 @@ Future<void> createKeepAuth(
 }
 
 @riverpod
-Future<void> switchAuth(SwitchAuthRef ref, bool value) async {
+Future<void> setAuth(SetAuthRef ref, bool value) async {
   final keepAuthRepository =
       await ref.watch(keepAuthRepositoryInstanceProvider.future);
-  await keepAuthRepository.switchAuth(value);
+  await keepAuthRepository.setAuth(value);
 }

@@ -47,10 +47,10 @@ final class MedicationInfo extends StatelessWidget {
           bottom: 10,
         ),
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(5)),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
           border: Border.all(
             color: const Color.fromARGB(202, 36, 111, 55),
-            width: 2,
+            width: 3.5,
           ),
         ),
         child: Column(
@@ -72,11 +72,14 @@ final class MedicationInfo extends StatelessWidget {
               thickness: 2,
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text('Dosage: ', style: boldStyle),
-                Text(
-                  '$medicationDosageString$medicationScheduleString',
-                  style: normalStyle,
+                Expanded(
+                  child: Text(
+                    '$medicationDosageString$medicationScheduleString',
+                    style: normalStyle,
+                  ),
                 ),
               ],
             ),

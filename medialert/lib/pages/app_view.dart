@@ -42,7 +42,9 @@ final class _AppViewState extends ConsumerState<AppView> {
     final keepAuth = ref.watch(getKeepAuthProvider);
 
     if (keepAuth.asData == null) {
-      ref.watch(createKeepAuthProvider(false));
+      ref.watch(
+        createKeepAuthProvider(false),
+      );
     }
 
     return MaterialApp(

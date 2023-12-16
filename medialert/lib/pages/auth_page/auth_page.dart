@@ -34,14 +34,15 @@ final class AuthPage extends HookConsumerWidget {
     // });
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Sign In'),
         automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: SingleChildScrollView(
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(12),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Logo(),
                 const SizedBox(
@@ -81,14 +82,13 @@ final class AuthPage extends HookConsumerWidget {
                 const SizedBox(
                   height: 15,
                 ),
-                const KeepAuthCheckbox(),
-                const SizedBox(
-                  height: 15,
-                ),
-                const Text(
-                  'All medication data is stored securely on your local device.\nIt is never shared to third parties.',
-                  style: explanationStyle,
-                  textAlign: TextAlign.center,
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: KeepAuthCheckbox(),
+                    )
+                  ],
                 ),
               ],
             ),
