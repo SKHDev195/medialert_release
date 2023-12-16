@@ -1,7 +1,6 @@
 import '../../models/dosage.dart';
 import '../../models/schedule.dart';
 import '../../models/medication.dart';
-import '../../models/medication_remainder.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../medications_repository_provider/medications_repository_provider.dart';
 

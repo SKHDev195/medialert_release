@@ -169,29 +169,29 @@ class _CreateKeepAuthProviderElement
   bool get value => (origin as CreateKeepAuthProvider).value;
 }
 
-String _$switchAuthHash() => r'481dfd2604ef45972164e483e72c07644b343b8c';
+String _$setAuthHash() => r'fc2bf2281e8bb23144b1a0609fdcdc378868455a';
 
-/// See also [switchAuth].
-@ProviderFor(switchAuth)
-const switchAuthProvider = SwitchAuthFamily();
+/// See also [setAuth].
+@ProviderFor(setAuth)
+const setAuthProvider = SetAuthFamily();
 
-/// See also [switchAuth].
-class SwitchAuthFamily extends Family<AsyncValue<void>> {
-  /// See also [switchAuth].
-  const SwitchAuthFamily();
+/// See also [setAuth].
+class SetAuthFamily extends Family<AsyncValue<void>> {
+  /// See also [setAuth].
+  const SetAuthFamily();
 
-  /// See also [switchAuth].
-  SwitchAuthProvider call(
+  /// See also [setAuth].
+  SetAuthProvider call(
     bool value,
   ) {
-    return SwitchAuthProvider(
+    return SetAuthProvider(
       value,
     );
   }
 
   @override
-  SwitchAuthProvider getProviderOverride(
-    covariant SwitchAuthProvider provider,
+  SetAuthProvider getProviderOverride(
+    covariant SetAuthProvider provider,
   ) {
     return call(
       provider.value,
@@ -210,32 +210,31 @@ class SwitchAuthFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'switchAuthProvider';
+  String? get name => r'setAuthProvider';
 }
 
-/// See also [switchAuth].
-class SwitchAuthProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [switchAuth].
-  SwitchAuthProvider(
+/// See also [setAuth].
+class SetAuthProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [setAuth].
+  SetAuthProvider(
     bool value,
   ) : this._internal(
-          (ref) => switchAuth(
-            ref as SwitchAuthRef,
+          (ref) => setAuth(
+            ref as SetAuthRef,
             value,
           ),
-          from: switchAuthProvider,
-          name: r'switchAuthProvider',
+          from: setAuthProvider,
+          name: r'setAuthProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$switchAuthHash,
-          dependencies: SwitchAuthFamily._dependencies,
-          allTransitiveDependencies:
-              SwitchAuthFamily._allTransitiveDependencies,
+                  : _$setAuthHash,
+          dependencies: SetAuthFamily._dependencies,
+          allTransitiveDependencies: SetAuthFamily._allTransitiveDependencies,
           value: value,
         );
 
-  SwitchAuthProvider._internal(
+  SetAuthProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -249,12 +248,12 @@ class SwitchAuthProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(SwitchAuthRef provider) create,
+    FutureOr<void> Function(SetAuthRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: SwitchAuthProvider._internal(
-        (ref) => create(ref as SwitchAuthRef),
+      override: SetAuthProvider._internal(
+        (ref) => create(ref as SetAuthRef),
         from: from,
         name: null,
         dependencies: null,
@@ -267,12 +266,12 @@ class SwitchAuthProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   AutoDisposeFutureProviderElement<void> createElement() {
-    return _SwitchAuthProviderElement(this);
+    return _SetAuthProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is SwitchAuthProvider && other.value == value;
+    return other is SetAuthProvider && other.value == value;
   }
 
   @override
@@ -284,17 +283,17 @@ class SwitchAuthProvider extends AutoDisposeFutureProvider<void> {
   }
 }
 
-mixin SwitchAuthRef on AutoDisposeFutureProviderRef<void> {
+mixin SetAuthRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `value` of this provider.
   bool get value;
 }
 
-class _SwitchAuthProviderElement extends AutoDisposeFutureProviderElement<void>
-    with SwitchAuthRef {
-  _SwitchAuthProviderElement(super.provider);
+class _SetAuthProviderElement extends AutoDisposeFutureProviderElement<void>
+    with SetAuthRef {
+  _SetAuthProviderElement(super.provider);
 
   @override
-  bool get value => (origin as SwitchAuthProvider).value;
+  bool get value => (origin as SetAuthProvider).value;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

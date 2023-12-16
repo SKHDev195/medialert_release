@@ -109,6 +109,7 @@ final class NewMedicationPage extends HookConsumerWidget {
                             },
                             loading: () {},
                           );
+
                       Navigator.pop(context);
                     } else {
                       formKey.currentState!.setState(() {

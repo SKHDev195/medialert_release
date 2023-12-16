@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
 import 'package:medialert/theme/font_styles.dart';
@@ -10,20 +9,26 @@ class KeepAuthCheckbox extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return FormBuilderCheckbox(
-      name: 'Keep me signed in',
-      title: const Text(
-        'Keep me signed in',
-        style: normalStyle,
+    return Align(
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: 300,
+        child: CheckboxListTile(
+          controlAffinity: ListTileControlAffinity.leading,
+          value: false,
+          activeColor: AppTheme.backgroundColorForNegativeInteractables,
+          onChanged: (value) {
+            ref.watch(
+              setAuthProvider(value!),
+            );
+          },
+          title: const Text(
+            'Keep me signed in',
+            style: normalStyle,
+            textAlign: TextAlign.center,
+          ),
+        ),
       ),
-      enabled: true,
-      initialValue: false,
-      activeColor: AppTheme.backgroundColorForNegativeInteractables,
-      onChanged: (value) {
-        ref.watch(
-          switchAuthProvider(value!),
-        );
-      },
     );
   }
 }

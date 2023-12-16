@@ -1,9 +1,10 @@
-import 'medication_info.dart';
-import '../../theme/font_styles.dart';
-import '../../models/medication.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_container/easy_container.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:medialert/theme/theme_data.dart';
+
+import '../../models/medication.dart';
+import '../../theme/font_styles.dart';
+import 'medication_info.dart';
 
 final class MedicationIsSecretField extends StatelessWidget {
   const MedicationIsSecretField({
@@ -40,6 +41,7 @@ final class MedicationIsSecretField extends StatelessWidget {
               style: normalStyle,
             ),
             onChanged: onSecretChanged,
+            activeColor: AppTheme.backgroundColorForPositiveInteractables,
           ),
         ],
       ),
