@@ -6,7 +6,7 @@ import '../../models/keep_auth.dart';
 part 'keep_auth_provider.g.dart';
 
 @riverpod
-Future<KeepAuth> getKeepAuth(
+Future<KeepAuth?> getKeepAuth(
   GetKeepAuthRef ref,
 ) async {
   final keepAuthRepository =
@@ -17,17 +17,16 @@ Future<KeepAuth> getKeepAuth(
 @riverpod
 Future<void> createKeepAuth(
   CreateKeepAuthRef ref,
+  bool value,
 ) async {
   final keepAuthRepository =
       await ref.watch(keepAuthRepositoryInstanceProvider.future);
-  await keepAuthRepository.createKeepAuth();
+  await keepAuthRepository.createKeepAuth(value);
 }
 
 @riverpod
-Future<void> switchAuth(
-  SwitchAuthRef ref,
-) async {
+Future<void> switchAuth(SwitchAuthRef ref, bool value) async {
   final keepAuthRepository =
       await ref.watch(keepAuthRepositoryInstanceProvider.future);
-  await keepAuthRepository.switchAuth();
+  await keepAuthRepository.switchAuth(value);
 }

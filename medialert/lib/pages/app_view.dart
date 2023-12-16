@@ -39,8 +39,12 @@ final class _AppViewState extends ConsumerState<AppView> {
     BuildContext context,
   ) {
     final themeService = ref.watch(themeServiceProvider);
-    ref.watch(createKeepAuthProvider);
-    final keepAuth = ref.watch(getKeepAuthProvider.future);
+    final keepAuth = ref.watch(getKeepAuthProvider);
+
+    if (keepAuth.asData == null) {
+      ref.watch(createKeepAuthProvider(false));
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeService.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,

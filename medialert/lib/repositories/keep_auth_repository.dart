@@ -8,24 +8,24 @@ final class KeepAuthRepository {
 
   final Isar isar;
 
-  Future<KeepAuth> getKeepAuth() async {
+  Future<KeepAuth?> getKeepAuth() async {
     final keepAuth = await isar.collection<KeepAuth>().get(1);
-    return keepAuth!;
+    return keepAuth;
   }
 
-  Future<void> createKeepAuth() async {
+  Future<void> createKeepAuth(bool value) async {
     final keepAuth = KeepAuth(
-      isEnabled: false,
+      isEnabled: value,
     );
     await isar.writeTxn(() async {
       isar.collection<KeepAuth>().put(keepAuth);
     });
   }
 
-  Future<void> switchAuth() async {
+  Future<void> switchAuth(bool value) async {
     final keepAuth = await isar.collection<KeepAuth>().get(1);
     await isar.writeTxn(() async {
-      keepAuth!.isEnabled = !keepAuth.isEnabled;
+      keepAuth!.isEnabled = value;
       await isar.collection<KeepAuth>().put(keepAuth);
     });
   }
