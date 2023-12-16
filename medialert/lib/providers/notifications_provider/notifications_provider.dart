@@ -2,7 +2,7 @@ import 'package:isar/isar.dart';
 import '../../models/dosage.dart';
 import '../../models/schedule.dart';
 import '../../models/medication.dart';
-import '../../models/medication_remainder.dart';
+
 import '../../models/medication_notification.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:medialert/providers/notifications_repository_provider/notifications_repository_provider.dart';

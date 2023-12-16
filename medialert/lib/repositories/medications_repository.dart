@@ -2,7 +2,6 @@ import '../models/dosage.dart';
 import 'package:isar/isar.dart';
 import '../models/schedule.dart';
 import '../models/medication.dart';
-import '../models/medication_remainder.dart';
 
 final class MedicationsRepository {
   MedicationsRepository({

@@ -1,3 +1,5 @@
+import 'package:medialert/pages/auth_page/widgets/keep_auth_checkbox.dart';
+
 import '../widgets/logo.dart';
 import 'package:flutter/material.dart';
 import '../../utils/error_dialog.dart';
@@ -66,6 +68,10 @@ final class AuthPage extends HookConsumerWidget {
                     );
                   },
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const KeepAuthCheckbox(),
                 const SizedBox(
                   height: 15,
                 ),

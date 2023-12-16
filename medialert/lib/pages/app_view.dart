@@ -1,5 +1,6 @@
 import 'package:medialert/theme/theme_data.dart';
 
+import '../providers/keep_auth_provider/keep_auth_provider.dart';
 import 'auth_page/auth_page.dart';
 import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,6 @@ final class AppView extends ConsumerStatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
   static const String name = 'MediAlert';
-  static const Color mainColor = Colors.greenAccent;
 
   @override
   ConsumerState<AppView> createState() => _AppViewState();
@@ -39,6 +39,8 @@ final class _AppViewState extends ConsumerState<AppView> {
     BuildContext context,
   ) {
     final themeService = ref.watch(themeServiceProvider);
+    ref.watch(createKeepAuthProvider);
+    final keepAuth = ref.watch(getKeepAuthProvider.future);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themeService.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
