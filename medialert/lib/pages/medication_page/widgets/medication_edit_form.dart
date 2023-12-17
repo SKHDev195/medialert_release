@@ -1,3 +1,6 @@
+import 'package:medialert/pages/medication_page/utils/delete_medication_dialog.dart';
+import 'package:medialert/theme/font_styles.dart';
+
 import '../../../models/dosage.dart';
 import 'package:flutter/material.dart';
 import '../../../models/schedule.dart';
@@ -58,7 +61,10 @@ final class MedicationEditForm extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Change Medication'),
+        title: const Text(
+          'Change Medication',
+          style: headingStyle,
+        ),
         automaticallyImplyLeading: true,
       ),
       body: SafeArea(
@@ -132,10 +138,11 @@ final class MedicationEditForm extends HookConsumerWidget {
                 const FormSeparator(),
                 MedicationDeleteButton(
                   onPressed: () {
-                    ref.read(
-                      deleteMedicationProvider(medication.medicationId),
+                    deleteMedicationDialog(
+                      context,
+                      ref,
+                      medication,
                     );
-                    Navigator.pop(context);
                   },
                 ),
               ],

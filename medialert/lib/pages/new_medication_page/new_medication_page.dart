@@ -1,3 +1,5 @@
+import 'package:medialert/theme/font_styles.dart';
+
 import '../../models/dosage.dart';
 import '../../models/schedule.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +40,10 @@ final class NewMedicationPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Medication'),
+        title: const Text(
+          'Add New Medication',
+          style: headingStyle,
+        ),
         automaticallyImplyLeading: true,
       ),
       body: SafeArea(

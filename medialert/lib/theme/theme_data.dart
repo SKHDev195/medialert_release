@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 sealed class AppTheme {
+  static const dialogDarkBackgroundColor = Color.fromARGB(255, 39, 71, 77);
+  static const dialogLightBackgroundColor = Color.fromARGB(255, 255, 255, 255);
   static const backgroundColorForPositiveInteractables =
       Color.fromARGB(229, 57, 189, 90);
   static const backgroundColorForNegativeInteractables =

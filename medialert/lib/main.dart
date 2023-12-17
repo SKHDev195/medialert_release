@@ -46,6 +46,7 @@ Future<void> main() async {
     isInDebugMode: true,
   );
 
+
   runApp(
     const ProviderScope(
       child: AppView(),

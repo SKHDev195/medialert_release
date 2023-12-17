@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medialert/theme/font_styles.dart';
 import '../../../models/schedule.dart';
 import '../utils/notification_scheduler.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -53,7 +54,10 @@ final class NotificationEditForm extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Set Notification'),
+        title: const Text(
+          'Set Notification',
+          style: headingStyle,
+        ),
         automaticallyImplyLeading: true,
       ),
       body: switch (medication) {
@@ -102,11 +106,6 @@ final class NotificationEditForm extends HookConsumerWidget {
                               offset,
                             ),
                           );
-
-                          // NotificationScheduler.createOffsetNotification(
-                          //   medication,
-                          //   offset!,
-                          // );
 
                           NotificationScheduler.createRepeatedNotification(
                             medication,

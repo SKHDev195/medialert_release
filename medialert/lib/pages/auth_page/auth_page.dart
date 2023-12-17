@@ -23,78 +23,109 @@ final class AuthPage extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    // ref.listen(getKeepAuthProvider, (previous, next) {
-    //   if ()
-    //   if (next.asData.value!.isEnabled) {
-    //     Navigator.pushNamed(
-    //       context,
-    //       MedicationsPage.routeName,
-    //     );
-    //   }
-    // });
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In'),
-        automaticallyImplyLeading: false,
-      ),
-      body: Center(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Logo(),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  'MediAlert',
-                  style: titleStyle,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                AuthenticateButton(
-                  onPressed: () {
-                    ref.watch(authenticateProvider.future).then(
-                      (value) {
-                        if (value) {
-                          Navigator.pushNamed(
-                            context,
-                            MedicationsPage.routeName,
-                          );
-                        }
-                      },
-                      onError: (object, stackTrace) {
-                        errorDialog(
-                          context,
-                          CustomError(
-                            code: 'Auth',
-                            plugin: 'Local auth',
-                            message: stackTrace.toString(),
-                          ),
+    late Widget authPage;
+
+    ref.listen(getKeepAuthProvider, (previous, next) {
+      if (next.asData!.value!.isEnabled) {
+        Navigator.pushNamed(
+          context,
+          MedicationsPage.routeName,
+        );
+      }
+    });
+    ref.watch(getKeepAuthProvider).when(
+      data: (data) {
+        authPage = Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              'Sign In',
+              style: headingStyle,
+            ),
+            automaticallyImplyLeading: false,
+          ),
+          body: Center(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Logo(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'MediAlert',
+                      style: titleStyle,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    AuthenticateButton(
+                      onPressed: () {
+                        ref.watch(authenticateProvider.future).then(
+                          (value) {
+                            if (value) {
+                              Navigator.pushNamed(
+                                context,
+                                MedicationsPage.routeName,
+                              );
+                            }
+                          },
+                          onError: (object, stackTrace) {
+                            errorDialog(
+                              context,
+                              CustomError(
+                                code: 'Auth',
+                                plugin: 'Local auth',
+                                message: stackTrace.toString(),
+                              ),
+                            );
+                          },
                         );
                       },
-                    );
-                  },
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: KeepAuthCheckbox(),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: KeepAuthCheckbox(),
+                        )
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
+      error: (error, stackTrace) {
+        authPage = Scaffold(
+          appBar: AppBar(
+            title: const Text('Sign In'),
+            automaticallyImplyLeading: false,
+          ),
+          body: const Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+        );
+      },
+      loading: () {
+        authPage = Scaffold(
+          appBar: AppBar(
+            title: const Text('Sign In'),
+            automaticallyImplyLeading: false,
+          ),
+          body: const Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+        );
+      },
     );
+    return authPage;
   }
 }

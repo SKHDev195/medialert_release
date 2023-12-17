@@ -8,9 +8,6 @@
 
 #include <awesome_notifications/awesome_notifications_plugin_c_api.h>
 #include <awesome_notifications_core/awesome_notifications_core_plugin_c_api.h>
-#include <cloud_firestore/cloud_firestore_plugin_c_api.h>
-#include <firebase_auth/firebase_auth_plugin_c_api.h>
-#include <firebase_core/firebase_core_plugin_c_api.h>
 #include <isar_flutter_libs/isar_flutter_libs_plugin.h>
 #include <local_auth_windows/local_auth_plugin.h>
 
@@ -19,12 +16,6 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("AwesomeNotificationsPluginCApi"));
   AwesomeNotificationsCorePluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("AwesomeNotificationsCorePluginCApi"));
-  CloudFirestorePluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("CloudFirestorePluginCApi"));
-  FirebaseAuthPluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("FirebaseAuthPluginCApi"));
-  FirebaseCorePluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("FirebaseCorePluginCApi"));
   IsarFlutterLibsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("IsarFlutterLibsPlugin"));
   LocalAuthPluginRegisterWithRegistrar(

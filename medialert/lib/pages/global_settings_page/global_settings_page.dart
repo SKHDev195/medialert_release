@@ -1,10 +1,11 @@
+import 'package:medialert/pages/global_settings_page/widgets/sign_out_button.dart';
+
 import 'widgets/settings_rows.dart';
 import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:medialert/pages/widgets/form_separator.dart';
 import 'package:medialert/pages/global_settings_page/widgets/manage_notifications_button.dart';
 
 final class GlobalSettingsPage extends ConsumerWidget {
@@ -22,7 +23,10 @@ final class GlobalSettingsPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Global Settings'),
+        title: const Text(
+          'Global Settings',
+          style: headingStyle,
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,6 +50,10 @@ final class GlobalSettingsPage extends ConsumerWidget {
                 onPressed: () => AppSettings.openAppSettings(
                     type: AppSettingsType.notification),
               ),
+              const SizedBox(
+                height: 15,
+              ),
+              const SignOutButton(),
             ],
           ),
         ),
