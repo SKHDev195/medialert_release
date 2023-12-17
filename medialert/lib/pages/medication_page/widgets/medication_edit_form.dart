@@ -32,10 +32,13 @@ final class MedicationEditForm extends HookConsumerWidget {
   ) {
     final formKey = GlobalKey<FormBuilderState>();
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-    DosageType? medicationDosageType;
-    DurationType? medicationDurationType;
+    DosageType? medicationDosageType = medication.dosage.dosageType;
+    DurationType? medicationDurationType = (medication.schedule != null &&
+            medication.schedule!.durationType != null)
+        ? medication.schedule!.durationType
+        : null;
 
-    bool? isSecret;
+    bool? isSecret = medication.isSecret;
 
     final medicationName = useTextEditingController(
       text: medication.name,
@@ -83,6 +86,7 @@ final class MedicationEditForm extends HookConsumerWidget {
                   scheduleQuantityController: medicationScheduleQuantity,
                 ),
                 MedicationIsSecretField(
+                  medication: medication,
                   onSecretChanged: (value) {
                     isSecret = value;
                   },
