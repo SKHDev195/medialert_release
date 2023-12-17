@@ -42,6 +42,7 @@ final class MedicationIsSecretField extends StatelessWidget {
             ),
             onChanged: onSecretChanged,
             activeColor: AppTheme.backgroundColorForPositiveInteractables,
+            initialValue: getCurrentSecretStatus(),
           ),
         ],
       ),
