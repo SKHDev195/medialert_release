@@ -23,6 +23,7 @@ sealed class NotificationScheduler {
       ),
       initialDelay: delay,
       tag: medication.medicationId.toString(),
+      existingWorkPolicy: ExistingWorkPolicy.append,
     );
   }
 }

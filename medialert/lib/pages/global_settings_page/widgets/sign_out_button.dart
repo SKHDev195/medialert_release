@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:medialert/pages/auth_page/auth_page.dart';
-import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
 import 'package:medialert/theme/theme_data.dart';
 import '../../../theme/font_styles.dart';
 import '../utils/sign_out_dialog.dart';

@@ -1,10 +1,8 @@
 import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
-import 'package:medialert/theme/theme_data.dart';
 import '../../../theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../providers/theme_provider/theme_provider.dart';
-import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
 
 final class ThemeSwitchRow extends ConsumerWidget {
   const ThemeSwitchRow({
