@@ -24,7 +24,10 @@ final class MedicationsPage extends ConsumerWidget {
     ref.refresh(medicationsProvider.future);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Medications'),
+        title: const Text(
+          'Medications',
+          style: headingStyle,
+        ),
         automaticallyImplyLeading: false,
         actions: [
           GlobalSettingsButton(onPressed: () {
