@@ -34,6 +34,7 @@ final class MedicationNameTextField extends StatelessWidget {
               labelText: 'Name',
               labelStyle: normalStyle,
               hintText: 'Medication name',
+              floatingLabelBehavior: FloatingLabelBehavior.never,
             ),
             validator: (value) =>
                 NewMedicationPageValidators.validateNameField(value!),

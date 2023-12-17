@@ -24,16 +24,17 @@ class MedicationSpecialNoteField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Enter any special notes',
+            'Enter any additional info',
             style: MedicationInfo.boldStyle,
           ),
           FormBuilderTextField(
-            name: 'Special note',
+            name: 'Additional info',
             style: normalStyle,
             controller: specialNoteContoller,
             decoration: const InputDecoration(
-              labelText: 'Special note',
-              hintText: 'Any additional info',
+              labelText: 'Additional info',
+              hintText: 'Additional info',
+              floatingLabelBehavior: FloatingLabelBehavior.never,
             ),
             validator: (value) =>
                 NewMedicationPageValidators.validateOptionalTextField(value),

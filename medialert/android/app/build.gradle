@@ -1,7 +1,9 @@
 buildscript {
-    ext.kotlin_version = '1.3.72'               
+    ext.kotlin_version = '1.7.10'               
 
     repositories {
+        google()
+        mavenCentral()
         maven {
             url "https://maven.google.com"
         }
@@ -9,13 +11,21 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
+        
+        
     }
+    ext {
+        compileSdkVersion   = 33                
+        targetSdkVersion    = 33                
+        
+   }
 }
 
 plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+
 }
 
 def localProperties = new Properties()
@@ -81,6 +91,7 @@ flutter {
 dependencies {
     implementation "com.android.support:multidex:1.0.3"
     implementation "androidx.biometric:biometric:1.2.0-alpha05"
+    implementation "androidx.activity:activity:1.6.0-alpha05"
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")

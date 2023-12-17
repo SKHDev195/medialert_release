@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:medialert/theme/font_styles.dart';
 import '../../../models/schedule.dart';
 import '../../../models/medication.dart';
-import '../../../theme/font_styles.dart';
 import '../../widgets/medication_info.dart';
 import 'package:easy_container/easy_container.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,11 +24,8 @@ final class NotificationOffsetField extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    return EasyContainer(
-      padding: 10,
-      showBorder: true,
-      borderRadius: 5,
-      elevation: 3,
+    return Padding(
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,7 +38,10 @@ final class NotificationOffsetField extends ConsumerWidget {
             initialValue: initialOffset,
             validator: NotificationFormFieldsValidators.validateOffsetField,
             onChanged: onOffsetChanged,
-            decoration: const InputDecoration(labelText: 'Start date and time'),
+            decoration: const InputDecoration(
+              labelText: 'Start date and time',
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+            ),
           ),
         ],
       ),
@@ -68,11 +68,8 @@ class NotificationScheduleField extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    return EasyContainer(
-      padding: 10,
-      showBorder: true,
-      borderRadius: 5,
-      elevation: 3,
+    return Padding(
+      padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -89,8 +86,9 @@ class NotificationScheduleField extends ConsumerWidget {
                   controller: scheduleQuantityController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    labelText: 'Interval, every...',
+                    labelText: 'Interval',
                     hintText: 'Interval',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   validator: NotificationFormFieldsValidators
                       .validateNotificationRegularityField,
@@ -101,8 +99,10 @@ class NotificationScheduleField extends ConsumerWidget {
                     name: 'Duration',
                     alignment: Alignment.center,
                     initialValue: initialValue,
-                    decoration:
-                        const InputDecoration(labelText: 'How to measure'),
+                    decoration: const InputDecoration(
+                      labelText: 'How to measure',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                    ),
                     onChanged: onDurationTypeChanged,
                     validator: (value) =>
                         NewMedicationPageValidators.validateOptionalDropdown(

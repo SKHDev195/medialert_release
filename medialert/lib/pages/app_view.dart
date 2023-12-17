@@ -41,13 +41,14 @@ final class _AppViewState extends ConsumerState<AppView> {
     BuildContext context,
   ) {
     final themeService = ref.watch(themeServiceProvider);
-    final keepAuth = ref.watch(getKeepAuthProvider);
-
-    if (keepAuth.hasValue && keepAuth.asData == null) {
-      ref.watch(
-        createKeepAuthProvider(false),
-      );
-    }
+    final backupKeepAuth = ref.watch(keepAuthProvider);
+    ref.watch(getKeepAuthProvider.future).then((value) {
+      if (value == null) {
+        ref.watch(
+          createKeepAuthProvider(backupKeepAuth),
+        );
+      }
+    });
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

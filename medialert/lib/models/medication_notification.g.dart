@@ -111,6 +111,7 @@ MedicationNotification _medicationNotificationDeserialize(
           allOffsets,
         ) ??
         Dosage(),
+    notificationId: id,
     medicationId: reader.readLong(offsets[1]),
     medicationName: reader.readString(offsets[2]),
     schedule: reader.readObjectOrNull<Schedule>(
@@ -121,7 +122,6 @@ MedicationNotification _medicationNotificationDeserialize(
         Schedule(),
     notificationOffset: reader.readDateTimeOrNull(offsets[4]),
   );
-  object.notificationId = id;
   return object;
 }
 

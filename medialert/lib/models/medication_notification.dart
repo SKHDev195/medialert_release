@@ -1,7 +1,6 @@
 import 'dosage.dart';
 import 'schedule.dart';
 import 'package:isar/isar.dart';
-import 'package:medialert/models/medication_remainder.dart';
 
 part 'medication_notification.g.dart';
 
@@ -9,6 +8,7 @@ part 'medication_notification.g.dart';
 @Name("medicationNotification")
 final class MedicationNotification {
   MedicationNotification({
+    required this.notificationId,
     required this.medicationId,
     required this.medicationName,
     required this.dosage,
@@ -17,7 +17,7 @@ final class MedicationNotification {
   });
 
   @Name("id")
-  Id notificationId = Isar.autoIncrement;
+  Id notificationId;
 
   @Name("medicationId")
   int medicationId;

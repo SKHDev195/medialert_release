@@ -17,11 +17,11 @@ Future<KeepAuth?> getKeepAuth(
 @riverpod
 Future<void> createKeepAuth(
   CreateKeepAuthRef ref,
-  bool value,
+  KeepAuth keepAuth,
 ) async {
   final keepAuthRepository =
       await ref.watch(keepAuthRepositoryInstanceProvider.future);
-  await keepAuthRepository.createKeepAuth(value);
+  await keepAuthRepository.createKeepAuth(keepAuth);
 }
 
 @riverpod

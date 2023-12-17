@@ -58,7 +58,7 @@ final class MedicationsPage extends ConsumerWidget {
       _ => const SafeArea(
           minimum: EdgeInsets.all(10),
           child: Text(
-            'Add a medication by tapping on \'+\' in the bottom-right corner',
+            'Add a medication by tapping on \'+\' in the bottom-right corner.',
             textAlign: TextAlign.center,
             style: normalStyle,
           ),
