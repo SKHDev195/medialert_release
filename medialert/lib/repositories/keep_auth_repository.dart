@@ -13,10 +13,7 @@ final class KeepAuthRepository {
     return keepAuth;
   }
 
-  Future<void> createKeepAuth(bool value) async {
-    final keepAuth = KeepAuth(
-      isEnabled: value,
-    );
+  Future<void> createKeepAuth(KeepAuth keepAuth) async {
     await isar.writeTxn(() async {
       isar.collection<KeepAuth>().put(keepAuth);
     });

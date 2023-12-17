@@ -20,7 +20,7 @@ final getKeepAuthProvider = AutoDisposeFutureProvider<KeepAuth?>.internal(
 );
 
 typedef GetKeepAuthRef = AutoDisposeFutureProviderRef<KeepAuth?>;
-String _$createKeepAuthHash() => r'8af8a8b9aef6c680273ee35d59d3b9240affba40';
+String _$createKeepAuthHash() => r'f31b4c230f9527ef7331159ea1cc2e0f4cb34ca2';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -54,10 +54,10 @@ class CreateKeepAuthFamily extends Family<AsyncValue<void>> {
 
   /// See also [createKeepAuth].
   CreateKeepAuthProvider call(
-    bool value,
+    KeepAuth keepAuth,
   ) {
     return CreateKeepAuthProvider(
-      value,
+      keepAuth,
     );
   }
 
@@ -66,7 +66,7 @@ class CreateKeepAuthFamily extends Family<AsyncValue<void>> {
     covariant CreateKeepAuthProvider provider,
   ) {
     return call(
-      provider.value,
+      provider.keepAuth,
     );
   }
 
@@ -89,11 +89,11 @@ class CreateKeepAuthFamily extends Family<AsyncValue<void>> {
 class CreateKeepAuthProvider extends AutoDisposeFutureProvider<void> {
   /// See also [createKeepAuth].
   CreateKeepAuthProvider(
-    bool value,
+    KeepAuth keepAuth,
   ) : this._internal(
           (ref) => createKeepAuth(
             ref as CreateKeepAuthRef,
-            value,
+            keepAuth,
           ),
           from: createKeepAuthProvider,
           name: r'createKeepAuthProvider',
@@ -104,7 +104,7 @@ class CreateKeepAuthProvider extends AutoDisposeFutureProvider<void> {
           dependencies: CreateKeepAuthFamily._dependencies,
           allTransitiveDependencies:
               CreateKeepAuthFamily._allTransitiveDependencies,
-          value: value,
+          keepAuth: keepAuth,
         );
 
   CreateKeepAuthProvider._internal(
@@ -114,10 +114,10 @@ class CreateKeepAuthProvider extends AutoDisposeFutureProvider<void> {
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.value,
+    required this.keepAuth,
   }) : super.internal();
 
-  final bool value;
+  final KeepAuth keepAuth;
 
   @override
   Override overrideWith(
@@ -132,7 +132,7 @@ class CreateKeepAuthProvider extends AutoDisposeFutureProvider<void> {
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        value: value,
+        keepAuth: keepAuth,
       ),
     );
   }
@@ -144,21 +144,21 @@ class CreateKeepAuthProvider extends AutoDisposeFutureProvider<void> {
 
   @override
   bool operator ==(Object other) {
-    return other is CreateKeepAuthProvider && other.value == value;
+    return other is CreateKeepAuthProvider && other.keepAuth == keepAuth;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, value.hashCode);
+    hash = _SystemHash.combine(hash, keepAuth.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin CreateKeepAuthRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `value` of this provider.
-  bool get value;
+  /// The parameter `keepAuth` of this provider.
+  KeepAuth get keepAuth;
 }
 
 class _CreateKeepAuthProviderElement
@@ -166,7 +166,7 @@ class _CreateKeepAuthProviderElement
   _CreateKeepAuthProviderElement(super.provider);
 
   @override
-  bool get value => (origin as CreateKeepAuthProvider).value;
+  KeepAuth get keepAuth => (origin as CreateKeepAuthProvider).keepAuth;
 }
 
 String _$setAuthHash() => r'fc2bf2281e8bb23144b1a0609fdcdc378868455a';

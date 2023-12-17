@@ -1,3 +1,4 @@
+import 'models/keep_auth.dart';
 import 'pages/app_view.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
@@ -36,6 +37,10 @@ final localAuthProvider = Provider<LocalAuthentication>(
   (ref) => LocalAuthentication(),
 );
 
+final keepAuthProvider = Provider<KeepAuth>(
+  (ref) => KeepAuth(isEnabled: false),
+);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -45,7 +50,6 @@ Future<void> main() async {
     callbackDispatcher,
     isInDebugMode: true,
   );
-
 
   runApp(
     const ProviderScope(

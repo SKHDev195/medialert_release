@@ -26,7 +26,10 @@ final class AuthPage extends HookConsumerWidget {
     late Widget authPage;
 
     ref.listen(getKeepAuthProvider, (previous, next) {
-      if (next.asData!.value!.isEnabled) {
+      if (previous != null &&
+          previous.asData != null &&
+          previous.asData!.value != null &&
+          previous.asData!.value!.isEnabled) {
         Navigator.pushNamed(
           context,
           MedicationsPage.routeName,
@@ -88,14 +91,14 @@ final class AuthPage extends HookConsumerWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: KeepAuthCheckbox(),
-                        )
-                      ],
-                    ),
+                    // const Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Expanded(
+                    //       child: KeepAuthCheckbox(),
+                    //     )
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

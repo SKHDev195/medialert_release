@@ -5,15 +5,15 @@ buildscript {
         mavenCentral()
     }
     ext {
-        compileSdkVersion   = 31                
-        targetSdkVersion    = 34                
-        appCompatVersion    = "1.4.2"
+        compileSdkVersion   = 33                
+        targetSdkVersion    = 33                
+        
    }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        
+
     }
 }
 

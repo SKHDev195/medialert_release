@@ -1,5 +1,6 @@
 import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
+import 'package:medialert/theme/theme_data.dart';
 import '../../../theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../providers/theme_provider/theme_provider.dart';
@@ -16,6 +17,7 @@ final class ThemeSwitchRow extends ConsumerWidget {
     WidgetRef ref,
   ) {
     final ThemeState themeState = ref.watch(themeServiceProvider);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 13),
       child: Row(

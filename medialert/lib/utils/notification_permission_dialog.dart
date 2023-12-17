@@ -1,14 +1,13 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:medialert/pages/medication_page/medication_page.dart';
 
-import '../../../main.dart';
-import '../../../providers/keep_auth_provider/keep_auth_provider.dart';
-import '../../../theme/font_styles.dart';
-import '../../../theme/theme_data.dart';
-import '../../medications_page/medications_page.dart';
+import '../main.dart';
 
-void keepMeSignedInDialog(
+import '../theme/font_styles.dart';
+import '../theme/theme_data.dart';
+
+void notificationPermissionDialog(
   BuildContext context,
   WidgetRef ref,
 ) {
@@ -20,11 +19,11 @@ void keepMeSignedInDialog(
             ? AppTheme.dialogDarkBackgroundColor
             : AppTheme.dialogLightBackgroundColor,
         title: const Text(
-          'Warning',
+          'Notifications',
           style: dialogTitleStyle,
         ),
         content: const Text(
-          'Are you sure you want to stay signed in? If you stay signed in, other people can access sensitive medications data.',
+          'It appears notifications are disabled for MediAlert. Would you like to go to app settings to enable notifications?',
           style: normalStyle,
         ),
         actions: [
@@ -37,13 +36,13 @@ void keepMeSignedInDialog(
           ),
           TextButton(
             onPressed: () {
-              ref.watch(
-                setAuthProvider(true),
-              );
               Navigator.pop(context);
+              AppSettings.openAppSettings(
+                type: AppSettingsType.notification,
+              );
             },
             child: const Text(
-              'YES',
+              'GO TO SETTINGS',
               style: normalStyle,
             ),
           ),

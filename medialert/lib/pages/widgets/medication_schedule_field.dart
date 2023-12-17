@@ -1,5 +1,4 @@
 import '../../models/medication.dart';
-import '../../theme/font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:medialert/models/schedule.dart';
 import 'package:medialert/pages/widgets/medication_info.dart';
@@ -47,8 +46,9 @@ final class MedicationScheduleField extends StatelessWidget {
                   controller: scheduleQuantityController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    labelText: 'Interval, every...',
+                    labelText: 'Interval',
                     hintText: 'Interval',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   validator: (value) =>
                       NewMedicationPageValidators.validateOptionalTextField(
@@ -61,6 +61,7 @@ final class MedicationScheduleField extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'How to measure',
                     hintText: '',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   initialValue: getCurrentScheduleDurationType(),
                   onChanged: onDurationTypeChanged,

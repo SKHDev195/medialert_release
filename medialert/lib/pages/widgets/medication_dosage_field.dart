@@ -45,7 +45,8 @@ final class MedicationDosageField extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     labelText: 'Quantity',
-                    hintText: 'How much to take',
+                    hintText: 'Quantity',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   validator: (value) =>
                       NewMedicationPageValidators.validateRequiredTextField(
@@ -58,6 +59,7 @@ final class MedicationDosageField extends StatelessWidget {
                   name: 'Dosage type',
                   decoration: const InputDecoration(
                     labelText: 'How to measure',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   initialValue: getDosageType(),
                   onChanged: onDosageTypeChanged,

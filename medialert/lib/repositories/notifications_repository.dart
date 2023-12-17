@@ -14,14 +14,16 @@ final class NotificationsRepository {
   final Isar isar;
 
   Future<void> disableMedicationNotifications(Medication medication) async {
-    final notification = await getNotification(medication.medicationId);
     await AwesomeNotifications().cancel(
       medication.medicationId,
     );
-    await isar
-        .collection<MedicationNotification>()
-        .delete(notification!.notificationId);
+    await isar.writeTxn(() async {
+      await isar
+          .collection<MedicationNotification>()
+          .delete(medication.medicationId);
+    });
 
+    print('cancelled!');
     await Workmanager().cancelByTag(medication.medicationId.toString());
   }
 
@@ -50,22 +52,21 @@ final class NotificationsRepository {
     Schedule schedule,
     DateTime? notificationOffset,
   ) async {
-    final additionalPermission =
-        await AwesomeNotifications().requestPermissionToSendNotifications();
     final currentNotification = await getNotification(medicationId);
-    if (currentNotification != null && additionalPermission) {
+    if (currentNotification != null) {
       currentNotification.notificationOffset = notificationOffset;
       currentNotification.schedule = schedule;
       await isar.writeTxn(() async {
         isar.collection<MedicationNotification>().put(currentNotification);
       });
-    } else if (currentNotification == null && additionalPermission) {
+    } else if (currentNotification == null) {
       final newNotification = MedicationNotification(
         medicationId: medicationId,
         medicationName: medicationName,
         dosage: dosage,
         schedule: schedule,
         notificationOffset: notificationOffset,
+        notificationId: medicationId,
       );
       await isar.writeTxn(
         () async {
