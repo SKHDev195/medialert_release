@@ -1,4 +1,3 @@
-import 'package:medialert/pages/auth_page/widgets/keep_auth_checkbox.dart';
 import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
 
 import '../widgets/logo.dart';
@@ -10,6 +9,8 @@ import '../medications_page/medications_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:medialert/providers/auth_provider/auth_provider.dart';
 import 'package:medialert/pages/auth_page/widgets/authenticate_button.dart';
+
+import 'widgets/keep_auth_checkbox.dart';
 
 final class AuthPage extends HookConsumerWidget {
   const AuthPage({
@@ -91,14 +92,14 @@ final class AuthPage extends HookConsumerWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    // const Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Expanded(
-                    //       child: KeepAuthCheckbox(),
-                    //     )
-                    //   ],
-                    // ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: KeepAuthCheckbox(),
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),

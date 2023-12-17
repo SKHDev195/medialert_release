@@ -1,7 +1,6 @@
 import 'dosage.dart';
 import 'schedule.dart';
 import 'package:isar/isar.dart';
-import 'package:medialert/models/medication_remainder.dart';
 
 part 'medication.g.dart';
 

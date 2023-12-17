@@ -1,7 +1,5 @@
 import 'package:medialert/theme/theme_data.dart';
-import 'package:medialert/utils/error_dialog.dart';
 
-import '../models/custom_error.dart';
 import '../providers/keep_auth_provider/keep_auth_provider.dart';
 import 'auth_page/auth_page.dart';
 import 'package:medialert/main.dart';

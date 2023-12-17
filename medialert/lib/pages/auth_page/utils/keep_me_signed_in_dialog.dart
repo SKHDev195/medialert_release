@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:medialert/pages/medication_page/medication_page.dart';
 
 import '../../../main.dart';
 import '../../../providers/keep_auth_provider/keep_auth_provider.dart';
 import '../../../theme/font_styles.dart';
 import '../../../theme/theme_data.dart';
-import '../../medications_page/medications_page.dart';
 
 void keepMeSignedInDialog(
   BuildContext context,

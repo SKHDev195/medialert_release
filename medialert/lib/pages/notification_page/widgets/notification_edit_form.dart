@@ -113,8 +113,6 @@ final class NotificationEditForm extends HookConsumerWidget {
                             offset!,
                           );
 
-                          Navigator.pop(context);
-
                           NotificationsSnackbarShower
                               .showNotificationCreatedSnackbar(context);
                         } else {
