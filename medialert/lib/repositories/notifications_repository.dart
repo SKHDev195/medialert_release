@@ -23,7 +23,6 @@ final class NotificationsRepository {
           .delete(medication.medicationId);
     });
 
-    print('cancelled!');
     await Workmanager().cancelByTag(medication.medicationId.toString());
   }
 

@@ -1,5 +1,5 @@
-import 'models/keep_auth.dart';
 import 'pages/app_view.dart';
+import 'models/keep_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'utils/notification_controller.dart';
@@ -12,6 +12,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 void callbackDispatcher() {
   Workmanager().executeTask((taskName, inputData) async {
     final splitString = taskName.split(' endid ');
+
     final notificationId = int.tryParse(splitString[0]);
     final notificationBody = splitString[1];
     await AwesomeNotifications().createNotification(
@@ -25,6 +26,7 @@ void callbackDispatcher() {
         displayOnForeground: true,
       ),
     );
+
     return Future.value(true);
   });
 }

@@ -1,11 +1,10 @@
-import 'package:medialert/pages/notification_page/notification_page.dart';
-
 import '../../models/medication.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:medialert/route_arguments.dart';
 import '../medication_page/medication_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medialert/pages/notification_page/notification_page.dart';
 
 final class MedicationEditButton extends ConsumerWidget {
   const MedicationEditButton({
@@ -21,7 +20,7 @@ final class MedicationEditButton extends ConsumerWidget {
     WidgetRef ref,
   ) {
     return IconButton(
-      onPressed: () => Navigator.pushNamed(
+      onPressed: () => Navigator.popAndPushNamed(
         context,
         MedicationPage.routeName,
         arguments: MedicationSettingsRouteArguments(
@@ -42,9 +41,13 @@ final class MedicationNotificationButton extends ConsumerWidget {
   final Medication medication;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    // final isNotificationPermissionGiven = await
     return IconButton(
-      onPressed: () => Navigator.pushNamed(
+      onPressed: () => Navigator.popAndPushNamed(
         context,
         NotificationPage.routeName,
         arguments: MedicationSettingsRouteArguments(
@@ -67,7 +70,10 @@ class MedicationIconButtonsRow extends ConsumerWidget {
   final Medication medication;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
     return Row(
       children: [
         MedicationNotificationButton(

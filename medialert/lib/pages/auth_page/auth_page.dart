@@ -1,16 +1,16 @@
-import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
-
 import '../widgets/logo.dart';
 import 'package:flutter/material.dart';
 import '../../utils/error_dialog.dart';
 import '../../models/custom_error.dart';
+import 'widgets/keep_auth_checkbox.dart';
 import 'package:medialert/theme/font_styles.dart';
 import '../medications_page/medications_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:medialert/providers/auth_provider/auth_provider.dart';
 import 'package:medialert/pages/auth_page/widgets/authenticate_button.dart';
+import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
 
-import 'widgets/keep_auth_checkbox.dart';
+
 
 final class AuthPage extends HookConsumerWidget {
   const AuthPage({
@@ -27,10 +27,10 @@ final class AuthPage extends HookConsumerWidget {
     late Widget authPage;
 
     ref.listen(getKeepAuthProvider, (previous, next) {
-      if (previous != null &&
-          previous.asData != null &&
-          previous.asData!.value != null &&
-          previous.asData!.value!.isEnabled) {
+      if (
+          next.asData != null &&
+          next.asData!.value != null &&
+          next.asData!.value!.isEnabled) {
         Navigator.pushNamed(
           context,
           MedicationsPage.routeName,

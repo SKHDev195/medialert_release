@@ -12,7 +12,7 @@ class NewMedicationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: AppTheme.backgroundColorForPositiveInteractables,
-      onPressed: () => Navigator.pushNamed(
+      onPressed: () => Navigator.popAndPushNamed(
         context,
         NewMedicationPage.routeName,
       ),

@@ -21,7 +21,6 @@ final class MedicationsPage extends ConsumerWidget {
   ) {
     final AsyncValue<List<Medication>> medications =
         ref.watch(medicationsProvider);
-    ref.refresh(medicationsProvider.future);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -41,7 +40,11 @@ final class MedicationsPage extends ConsumerWidget {
       body: Center(
         child: switch (medications) {
           AsyncData(:final value) => getCorrectList(value),
-          AsyncLoading() => const CircularProgressIndicator(),
+          AsyncLoading() => const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
           AsyncError() => const MedicationsErrorWidget(),
           _ => const Text('Initialising...'),
         },

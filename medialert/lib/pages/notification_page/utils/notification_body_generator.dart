@@ -3,8 +3,8 @@ import '../../../models/medication.dart';
 sealed class NotificationBodyGenerator {
   static String generateNotificationBody(Medication medication) {
     if (medication.isSecret != null && medication.isSecret!) {
-      const String notificationBody =
-          'Hey! This is just a kind reminder about something really important.';
+      final String notificationBody =
+          '${medication.medicationId} endid Hey! This is just a kind reminder about something really important.';
       return notificationBody;
     } else {
       final String medicationScheduleString =

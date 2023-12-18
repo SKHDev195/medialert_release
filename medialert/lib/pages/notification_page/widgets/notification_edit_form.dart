@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:medialert/theme/font_styles.dart';
 import '../../../models/schedule.dart';
 import '../utils/notification_scheduler.dart';
+import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../../medications_page/medications_page.dart';
 import '../../../models/medication_notification.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:medialert/providers/medications_provider/medications_provider.dart';
@@ -28,6 +29,13 @@ final class NotificationEditForm extends HookConsumerWidget {
     WidgetRef ref,
   ) {
     final medicationAsync = ref.watch(getMedicationProvider(medicationId));
+
+    medicationAsync.whenData(
+      (value) => ref.watch(
+        getNotificationProvider(value.medicationId),
+      ),
+    );
+
     final formKey = GlobalKey<FormBuilderState>();
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
@@ -115,6 +123,10 @@ final class NotificationEditForm extends HookConsumerWidget {
 
                           NotificationsSnackbarShower
                               .showNotificationCreatedSnackbar(context);
+                          Navigator.popAndPushNamed(
+                            context,
+                            MedicationsPage.routeName,
+                          );
                         } else {
                           formKey.currentState!.setState(() {
                             autovalidateMode = AutovalidateMode.always;
@@ -127,12 +139,29 @@ final class NotificationEditForm extends HookConsumerWidget {
                     ),
                     CancelNotificationButton(
                       onPressed: () {
-                        ref.read(
+                        ref.watch(
                           disableMedicationNotificationsProvider(
                             medication,
                           ),
                         );
+                        NotificationsSnackbarShower
+                            .showNotificationCanceledSnackbar(
+                          context,
+                        );
+                        Navigator.popAndPushNamed(
+                          context,
+                          MedicationsPage.routeName,
+                        );
                       },
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Center(
+                      child: Text(
+                        'In some cases, notifications can be slightly late.',
+                        style: explanationStyle,
+                      ),
                     ),
                   ],
                 ),
