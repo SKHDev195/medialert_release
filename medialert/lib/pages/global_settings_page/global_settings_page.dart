@@ -1,4 +1,5 @@
 import 'package:medialert/pages/global_settings_page/widgets/sign_out_button.dart';
+import 'package:medialert/pages/widgets/custom_back_button.dart';
 
 import 'widgets/settings_rows.dart';
 import 'package:medialert/main.dart';
@@ -27,8 +28,11 @@ final class GlobalSettingsPage extends ConsumerWidget {
           'Global Settings',
           style: headingStyle,
         ),
+        automaticallyImplyLeading: false,
+        leading: const CustomBackButton(),
       ),
       body: SafeArea(
+        minimum: const EdgeInsets.all(7),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

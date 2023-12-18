@@ -1,3 +1,5 @@
+import 'package:medialert/pages/widgets/custom_back_button.dart';
+
 import '../../../models/dosage.dart';
 import 'package:flutter/material.dart';
 import '../../../models/schedule.dart';
@@ -66,9 +68,11 @@ final class MedicationEditForm extends HookConsumerWidget {
           'Change Medication',
           style: headingStyle,
         ),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: const CustomBackButton(),
       ),
       body: SafeArea(
+        minimum: const EdgeInsets.all(5),
         child: SingleChildScrollView(
           child: FormBuilder(
             key: formKey,

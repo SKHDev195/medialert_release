@@ -19,7 +19,6 @@ import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../providers/medications_provider/medications_provider.dart';
 import 'package:medialert/pages/medication_page/utils/medication_snackbar_shower.dart';
 
-
 final class NewMedicationPage extends HookConsumerWidget {
   const NewMedicationPage({super.key});
 
@@ -49,6 +48,7 @@ final class NewMedicationPage extends HookConsumerWidget {
         automaticallyImplyLeading: true,
       ),
       body: SafeArea(
+        minimum: const EdgeInsets.all(7),
         child: SingleChildScrollView(
           child: FormBuilder(
             key: formKey,
@@ -102,7 +102,8 @@ final class NewMedicationPage extends HookConsumerWidget {
                           medicationSpecialNote.text,
                         ),
                       );
-                      MedicationSnackbarShower.showMedicationCreatedSnackbar(context);
+                      MedicationSnackbarShower.showMedicationCreatedSnackbar(
+                          context);
                       Navigator.popAndPushNamed(
                         context,
                         MedicationsPage.routeName,
