@@ -1,5 +1,3 @@
-import 'package:medialert/theme/font_styles.dart';
-
 import '../../models/dosage.dart';
 import '../../models/schedule.dart';
 import 'package:flutter/material.dart';
@@ -7,16 +5,20 @@ import '../../models/dosage_type.dart';
 import '../../utils/error_dialog.dart';
 import '../../models/custom_error.dart';
 import '../widgets/medication_dosage_field.dart';
+import 'widgets/medication_creation_button.dart';
+import 'package:medialert/theme/font_styles.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import '../widgets/medication_schedule_field.dart';
 import '../widgets/medication_name_text_field.dart';
 import '../widgets/medication_is_secret_field.dart';
-import '../widgets/medication_schedule_field.dart';
-import '../widgets/medication_special_note_field.dart';
-import 'widgets/medication_creation_button.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import '../widgets/medication_special_note_field.dart';
 import 'package:medialert/pages/widgets/form_separator.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../providers/medications_provider/medications_provider.dart';
+import 'package:medialert/pages/medication_page/utils/medication_snackbar_shower.dart';
+
 
 final class NewMedicationPage extends HookConsumerWidget {
   const NewMedicationPage({super.key});
@@ -91,31 +93,20 @@ final class NewMedicationPage extends HookConsumerWidget {
                         medicationDurationType,
                         double.tryParse(medicationScheduleQuantity.text),
                       );
-                      ref
-                          .read(
-                            createMedicationProvider(
-                              medicationName.text,
-                              medicationDosage,
-                              isSecret,
-                              medicationSchedule,
-                              medicationSpecialNote.text,
-                            ),
-                          )
-                          .when(
-                            data: (data) {},
-                            error: (object, stackTrace) {
-                              errorDialog(
-                                context,
-                                const CustomError(
-                                  message: 'Medication could not be created!',
-                                  code: 'Storage error',
-                                ),
-                              );
-                            },
-                            loading: () {},
-                          );
-
-                      Navigator.pop(context);
+                      ref.read(
+                        createMedicationProvider(
+                          medicationName.text,
+                          medicationDosage,
+                          isSecret,
+                          medicationSchedule,
+                          medicationSpecialNote.text,
+                        ),
+                      );
+                      MedicationSnackbarShower.showMedicationCreatedSnackbar(context);
+                      Navigator.popAndPushNamed(
+                        context,
+                        MedicationsPage.routeName,
+                      );
                     } else {
                       formKey.currentState!.setState(() {
                         autovalidateMode = AutovalidateMode.always;

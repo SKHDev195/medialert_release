@@ -12,24 +12,29 @@ final class MedicationErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(
-            'Something has gone wrong...\r\nPress the button below to refresh the page'),
-        const SizedBox(
-          height: 20,
-        ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(
-            context,
-            MedicationPage.routeName,
-            arguments:
-                MedicationSettingsRouteArguments(medicationId: medicationId),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Error'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+              'Something has gone wrong...\nGo to the previous page or rese the app.'),
+          const SizedBox(
+            height: 20,
           ),
-          child: const Text('Refresh'),
-        ),
-      ],
+          TextButton(
+            onPressed: () => Navigator.pushNamed(
+              context,
+              MedicationPage.routeName,
+              arguments:
+                  MedicationSettingsRouteArguments(medicationId: medicationId),
+            ),
+            child: const Text('Refresh'),
+          ),
+        ],
+      ),
     );
   }
 }

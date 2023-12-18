@@ -14,7 +14,6 @@ sealed class NotificationScheduler {
     final delay = offset.difference(DateTime.now());
     final taskName =
         NotificationBodyGenerator.generateNotificationBody(medication);
-
     await Workmanager().registerPeriodicTask(
       medication.medicationId.toString(),
       taskName,
@@ -23,7 +22,7 @@ sealed class NotificationScheduler {
       ),
       initialDelay: delay,
       tag: medication.medicationId.toString(),
-      existingWorkPolicy: ExistingWorkPolicy.append,
+      existingWorkPolicy: ExistingWorkPolicy.replace,
     );
   }
 }

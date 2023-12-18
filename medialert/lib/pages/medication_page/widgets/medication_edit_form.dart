@@ -1,6 +1,3 @@
-import 'package:medialert/pages/medication_page/utils/delete_medication_dialog.dart';
-import 'package:medialert/theme/font_styles.dart';
-
 import '../../../models/dosage.dart';
 import 'package:flutter/material.dart';
 import '../../../models/schedule.dart';
@@ -8,6 +5,7 @@ import 'medication_update_button.dart';
 import '../../../models/medication.dart';
 import '../../../models/dosage_type.dart';
 import '../../widgets/form_separator.dart';
+import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../widgets/medication_dosage_field.dart';
@@ -17,7 +15,10 @@ import '../../widgets/medication_is_secret_field.dart';
 import '../../widgets/medication_special_note_field.dart';
 import '../../../utils/medication_optional_fields_catcher.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../../providers/medications_provider/medications_provider.dart';
+import 'package:medialert/pages/medication_page/utils/delete_medication_dialog.dart';
+import 'package:medialert/pages/medication_page/utils/medication_snackbar_shower.dart';
 import 'package:medialert/pages/medication_page/widgets/medication_delete_button.dart';
 
 final class MedicationEditForm extends HookConsumerWidget {
@@ -127,7 +128,13 @@ final class MedicationEditForm extends HookConsumerWidget {
                           medicationSpecialNote.text,
                         ),
                       );
-                      Navigator.pop(context);
+                      MedicationSnackbarShower.showMedicationUpdatedSnackbar(
+                        context,
+                      );
+                      Navigator.popAndPushNamed(
+                        context,
+                        MedicationsPage.routeName,
+                      );
                     } else {
                       formKey.currentState!.setState(() {
                         autovalidateMode = AutovalidateMode.always;

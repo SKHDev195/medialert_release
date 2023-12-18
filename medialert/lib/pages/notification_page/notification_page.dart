@@ -1,11 +1,10 @@
-import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
-
 import 'package:flutter/material.dart';
-import '../../models/medication_notification.dart';
 import 'widgets/notification_edit_form.dart';
 import 'package:medialert/route_arguments.dart';
+import '../../models/medication_notification.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../medication_page/widgets/medication_error_widget.dart';
+import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
 
 final class NotificationPage extends HookConsumerWidget {
   const NotificationPage({super.key});
@@ -28,7 +27,11 @@ final class NotificationPage extends HookConsumerWidget {
           notification: value,
           medicationId: args.medicationId,
         ),
-      AsyncLoading() => const CircularProgressIndicator(),
+      AsyncLoading() => const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
       AsyncError() => MedicationErrorWidget(medicationId: args.medicationId),
       _ => const Text('Initialising...'),
     };

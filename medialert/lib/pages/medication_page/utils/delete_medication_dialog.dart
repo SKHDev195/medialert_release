@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medialert/main.dart';
-import 'package:medialert/pages/medications_page/medications_page.dart';
-
+import 'package:flutter/material.dart';
+import '../../../theme/theme_data.dart';
 import '../../../models/medication.dart';
+import '../../../theme/font_styles.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../../providers/medications_provider/medications_provider.dart';
 import '../../../providers/notifications_provider/notifications_provider.dart';
-import '../../../theme/font_styles.dart';
-import '../../../theme/theme_data.dart';
+import 'package:medialert/pages/medication_page/utils/medication_snackbar_shower.dart';
 
 void deleteMedicationDialog(
   BuildContext context,
@@ -46,6 +46,9 @@ void deleteMedicationDialog(
                 disableMedicationNotificationsProvider(
                   medication,
                 ),
+              );
+              MedicationSnackbarShower.showNotificationCanceledSnackbar(
+                context,
               );
               Navigator.popAndPushNamed(
                 context,
