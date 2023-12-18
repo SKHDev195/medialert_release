@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medialert/pages/widgets/custom_back_button.dart';
 import '../../../models/schedule.dart';
 import '../utils/notification_scheduler.dart';
 import 'package:medialert/theme/font_styles.dart';
@@ -66,10 +67,12 @@ final class NotificationEditForm extends HookConsumerWidget {
           'Set Notification',
           style: headingStyle,
         ),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: const CustomBackButton(),
       ),
       body: switch (medication) {
         != null => SafeArea(
+            minimum: const EdgeInsets.all(5),
             child: SingleChildScrollView(
               child: FormBuilder(
                 key: formKey,
@@ -157,10 +160,15 @@ final class NotificationEditForm extends HookConsumerWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    const Center(
-                      child: Text(
-                        'In some cases, notifications can be slightly late.',
-                        style: explanationStyle,
+                    const Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'In some cases, notifications can arrive slightly later than scheduled.',
+                          style: explanationStyle,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ],
