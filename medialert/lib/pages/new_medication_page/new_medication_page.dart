@@ -15,6 +15,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../widgets/medication_special_note_field.dart';
 import 'package:medialert/pages/widgets/form_separator.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:medialert/pages/widgets/custom_back_button.dart';
 import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../providers/medications_provider/medications_provider.dart';
 import 'package:medialert/pages/medication_page/utils/medication_snackbar_shower.dart';
@@ -45,7 +46,8 @@ final class NewMedicationPage extends HookConsumerWidget {
           'Add New Medication',
           style: headingStyle,
         ),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
+        leading: const CustomBackButton(),
       ),
       body: SafeArea(
         minimum: const EdgeInsets.all(7),
@@ -93,6 +95,7 @@ final class NewMedicationPage extends HookConsumerWidget {
                         medicationDurationType,
                         double.tryParse(medicationScheduleQuantity.text),
                       );
+
                       ref.read(
                         createMedicationProvider(
                           medicationName.text,
@@ -102,6 +105,7 @@ final class NewMedicationPage extends HookConsumerWidget {
                           medicationSpecialNote.text,
                         ),
                       );
+                      ref.refresh(medicationsProvider.future);
                       MedicationSnackbarShower.showMedicationCreatedSnackbar(
                           context);
                       Navigator.popAndPushNamed(

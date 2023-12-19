@@ -19,9 +19,8 @@ final class MedicationsPage extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    final AsyncValue<List<Medication>> medications =
-        ref.watch(medicationsProvider);
-    ref.refresh(medicationsProvider);
+    final medications = ref.watch(medicationsProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -41,16 +40,11 @@ final class MedicationsPage extends ConsumerWidget {
       body: SafeArea(
         minimum: const EdgeInsets.all(5),
         child: Center(
-          child: switch (medications) {
-            AsyncData(:final value) => getCorrectList(value),
-            AsyncLoading() => const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            AsyncError() => const MedicationsErrorWidget(),
-            _ => const Text('Initialising...'),
-          },
+          child: medications.when(
+            data: (medications) => getCorrectList(medications),
+            loading: () => const CircularProgressIndicator(),
+            error: (e, _) => const MedicationsErrorWidget(),
+          ),
         ),
       ),
       floatingActionButton: const NewMedicationButton(),

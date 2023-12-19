@@ -6,6 +6,24 @@ part of 'notifications_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$getNotificationsPermissionStatusHash() =>
+    r'5250249a1948c765f81466d2297b19b648a115dd';
+
+/// See also [getNotificationsPermissionStatus].
+@ProviderFor(getNotificationsPermissionStatus)
+final getNotificationsPermissionStatusProvider =
+    AutoDisposeFutureProvider<bool>.internal(
+  getNotificationsPermissionStatus,
+  name: r'getNotificationsPermissionStatusProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getNotificationsPermissionStatusHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetNotificationsPermissionStatusRef
+    = AutoDisposeFutureProviderRef<bool>;
 String _$disableMedicationNotificationsHash() =>
     r'982e20dc63f5e2ac1c1e75db6ba7d537127f5b9b';
 

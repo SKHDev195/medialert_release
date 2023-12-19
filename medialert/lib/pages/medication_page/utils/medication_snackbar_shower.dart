@@ -33,13 +33,13 @@ sealed class MedicationSnackbarShower {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  static void showNotificationCanceledSnackbar(BuildContext context) {
+  static void showMedicationDeletedSnackbar(BuildContext context) {
     const SnackBar snackBar = SnackBar(
       duration: Duration(
         seconds: 2,
       ),
       content: Text(
-        'Notification canceled!',
+        'Medication deleted!',
         style: normalStyle,
       ),
       backgroundColor: AppTheme.backgroundColorForNegativeInteractables,

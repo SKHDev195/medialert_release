@@ -1,5 +1,3 @@
-import 'package:medialert/pages/widgets/custom_back_button.dart';
-
 import '../../../models/dosage.dart';
 import 'package:flutter/material.dart';
 import '../../../models/schedule.dart';
@@ -17,6 +15,7 @@ import '../../widgets/medication_is_secret_field.dart';
 import '../../widgets/medication_special_note_field.dart';
 import '../../../utils/medication_optional_fields_catcher.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:medialert/pages/widgets/custom_back_button.dart';
 import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../../providers/medications_provider/medications_provider.dart';
 import 'package:medialert/pages/medication_page/utils/delete_medication_dialog.dart';
@@ -130,8 +129,9 @@ final class MedicationEditForm extends HookConsumerWidget {
                           isSecret,
                           medicationSchedule,
                           medicationSpecialNote.text,
-                        ),
+                        ).future,
                       );
+                      ref.refresh(medicationsProvider.future);
                       MedicationSnackbarShower.showMedicationUpdatedSnackbar(
                         context,
                       );
