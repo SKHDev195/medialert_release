@@ -104,44 +104,6 @@ class _MedicationNotificationButtonState
   }
 }
 
-// final class MedicationNotificationButton extends ConsumerWidget {
-//   const MedicationNotificationButton({
-//     super.key,
-//     required this.medication,
-//   });
-
-//   final Medication medication;
-
-//   @override
-//   Widget build(
-//     BuildContext context,
-//     WidgetRef ref,
-//   ) {
-//     final notification = ref.watch(
-//       getNotificationProvider(
-//         medication.medicationId,
-//       ),
-//     );
-//     return notification.when(
-//       data: (data) {
-//         if (data == null) {
-//           return EmptyNotificationsCollectionButton(
-//             medication: medication,
-//           );
-//         } else if (data == 'Notifications disabled') {
-//           return const DisabledNotificationsButton();
-//         } else {
-//           return ExistingNotificationButton(
-//             medication: medication,
-//           );
-//         }
-//       },
-//       error: ((error, stackTrace) => const DisabledNotificationsButton()),
-//       loading: () => const CircularProgressIndicator(),
-//     );
-//   }
-// }
-
 final class MedicationIconButtonsRow extends ConsumerWidget {
   const MedicationIconButtonsRow({
     super.key,
