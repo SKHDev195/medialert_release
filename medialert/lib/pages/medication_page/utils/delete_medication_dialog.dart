@@ -47,7 +47,8 @@ void deleteMedicationDialog(
                   medication,
                 ),
               );
-              MedicationSnackbarShower.showNotificationCanceledSnackbar(
+              ref.refresh(medicationsProvider.future);
+              MedicationSnackbarShower.showMedicationDeletedSnackbar(
                 context,
               );
               Navigator.popAndPushNamed(

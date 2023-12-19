@@ -4,7 +4,9 @@ import '../models/schedule.dart';
 import '../models/medication.dart';
 import 'package:workmanager/workmanager.dart';
 import '../models/medication_notification.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+
 
 final class NotificationsRepository {
   NotificationsRepository({
@@ -12,6 +14,11 @@ final class NotificationsRepository {
   });
 
   final Isar isar;
+
+  Future<bool> getNotificationsPermissionStatus() async {
+    final result = await Permission.notification.isGranted;
+    return result;
+  }
 
   Future<void> disableMedicationNotifications(Medication medication) async {
     await AwesomeNotifications().cancel(

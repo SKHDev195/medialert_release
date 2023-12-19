@@ -2,12 +2,21 @@ import 'package:isar/isar.dart';
 import '../../models/dosage.dart';
 import '../../models/schedule.dart';
 import '../../models/medication.dart';
-
 import '../../models/medication_notification.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:medialert/providers/notifications_repository_provider/notifications_repository_provider.dart';
 
 part 'notifications_provider.g.dart';
+
+@riverpod
+Future<bool> getNotificationsPermissionStatus(
+    GetNotificationsPermissionStatusRef ref) async {
+  final notificationsRepository =
+      await ref.watch(notificationsRepositoryInstanceProvider.future);
+  final result =
+      await notificationsRepository.getNotificationsPermissionStatus();
+  return result;
+}
 
 @riverpod
 Future<void> disableMedicationNotifications(

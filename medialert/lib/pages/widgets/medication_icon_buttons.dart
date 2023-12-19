@@ -1,14 +1,13 @@
-import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
-import 'package:medialert/utils/notification_permission_dialog.dart';
-import 'package:permission_handler/permission_handler.dart';
-
 import '../../models/medication.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:medialert/route_arguments.dart';
 import '../medication_page/medication_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:medialert/utils/notification_permission_dialog.dart';
 import 'package:medialert/pages/notification_page/notification_page.dart';
+import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
 
 final class MedicationEditButton extends ConsumerWidget {
   const MedicationEditButton({
@@ -51,11 +50,12 @@ final class MedicationNotificationButton extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    final notification = ref.watch(
+    final notification = ref.refresh(
       getNotificationProvider(
         medication.medicationId,
       ).future,
     );
+
     notification.then(
       (value) {
         if (value == null) {
@@ -80,10 +80,11 @@ final class MedicationNotificationButton extends ConsumerWidget {
         }
       },
     );
+    return const DisabledNotificationsButton();
   }
 }
 
-class MedicationIconButtonsRow extends ConsumerWidget {
+final class MedicationIconButtonsRow extends ConsumerWidget {
   const MedicationIconButtonsRow({
     super.key,
     required this.medication,
