@@ -19,7 +19,7 @@ final class NotificationPage extends HookConsumerWidget {
     final args = ModalRoute.of(context)!.settings.arguments
         as MedicationSettingsRouteArguments;
 
-    final AsyncValue<MedicationNotification?> currentNotification =
+    final currentNotification =
         ref.watch(getNotificationProvider(args.medicationId));
 
     return switch (currentNotification) {

@@ -1,3 +1,4 @@
+import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
 import 'package:medialert/theme/theme_data.dart';
 
 import '../providers/keep_auth_provider/keep_auth_provider.dart';
@@ -40,6 +41,7 @@ final class _AppViewState extends ConsumerState<AppView> {
   ) {
     final themeService = ref.watch(themeServiceProvider);
     final backupKeepAuth = ref.watch(keepAuthProvider);
+
     ref.watch(getKeepAuthProvider.future).then((value) {
       if (value == null) {
         ref.watch(

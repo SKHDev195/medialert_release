@@ -29,15 +29,21 @@ Future<void> disableMedicationNotifications(
 }
 
 @riverpod
-Future<MedicationNotification?> getNotification(
+Future<dynamic> getNotification(
   GetNotificationRef ref,
   int medicationId,
 ) async {
   final notificationsRepository =
       await ref.watch(notificationsRepositoryInstanceProvider.future);
-  final notification =
-      await notificationsRepository.getNotification(medicationId);
-  return notification;
+  final notificationsPermissionStatus =
+      await ref.watch(getNotificationsPermissionStatusProvider.future);
+  if (notificationsPermissionStatus) {
+    final notification =
+        await notificationsRepository.getNotification(medicationId);
+    return notification;
+  } else {
+    return 'Notifications disabled';
+  }
 }
 
 @riverpod

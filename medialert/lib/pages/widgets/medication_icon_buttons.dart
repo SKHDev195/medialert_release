@@ -37,7 +37,7 @@ final class MedicationEditButton extends ConsumerWidget {
   }
 }
 
-final class MedicationNotificationButton extends ConsumerWidget {
+class MedicationNotificationButton extends ConsumerStatefulWidget {
   const MedicationNotificationButton({
     super.key,
     required this.medication,
@@ -46,43 +46,101 @@ final class MedicationNotificationButton extends ConsumerWidget {
   final Medication medication;
 
   @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _MedicationNotificationButtonState();
+}
+
+class _MedicationNotificationButtonState
+    extends ConsumerState<MedicationNotificationButton>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      setState(() {
+        ref.refresh(getNotificationsPermissionStatusProvider.future);
+      });
+    }
+  }
+
+  @override
   Widget build(
     BuildContext context,
-    WidgetRef ref,
   ) {
-    final notification = ref.refresh(
+    final notification = ref.watch(
       getNotificationProvider(
-        medication.medicationId,
-      ).future,
+        widget.medication.medicationId,
+      ),
     );
-
-    notification.then(
-      (value) {
-        if (value == null) {
+    return notification.when(
+      data: (data) {
+        if (data == null) {
           return EmptyNotificationsCollectionButton(
-            medication: medication,
+            medication: widget.medication,
           );
+        } else if (data == 'Notifications disabled') {
+          return const DisabledNotificationsButton();
         } else {
           return ExistingNotificationButton(
-            medication: medication,
+            medication: widget.medication,
           );
         }
       },
+      error: ((error, stackTrace) => const DisabledNotificationsButton()),
+      loading: () => const CircularProgressIndicator(),
     );
-    ref.refresh(
-      getNotificationProvider(medication.medicationId),
-    );
-    final areNotificationsEnabled = Permission.notification.isGranted;
-    areNotificationsEnabled.then(
-      (value) {
-        if (value == false) {
-          return const DisabledNotificationsButton();
-        }
-      },
-    );
-    return const DisabledNotificationsButton();
   }
 }
+
+// final class MedicationNotificationButton extends ConsumerWidget {
+//   const MedicationNotificationButton({
+//     super.key,
+//     required this.medication,
+//   });
+
+//   final Medication medication;
+
+//   @override
+//   Widget build(
+//     BuildContext context,
+//     WidgetRef ref,
+//   ) {
+//     final notification = ref.watch(
+//       getNotificationProvider(
+//         medication.medicationId,
+//       ),
+//     );
+//     return notification.when(
+//       data: (data) {
+//         if (data == null) {
+//           return EmptyNotificationsCollectionButton(
+//             medication: medication,
+//           );
+//         } else if (data == 'Notifications disabled') {
+//           return const DisabledNotificationsButton();
+//         } else {
+//           return ExistingNotificationButton(
+//             medication: medication,
+//           );
+//         }
+//       },
+//       error: ((error, stackTrace) => const DisabledNotificationsButton()),
+//       loading: () => const CircularProgressIndicator(),
+//     );
+//   }
+// }
 
 final class MedicationIconButtonsRow extends ConsumerWidget {
   const MedicationIconButtonsRow({
@@ -125,7 +183,8 @@ final class DisabledNotificationsButton extends ConsumerWidget {
         );
       },
       icon: const Icon(
-        Icons.notifications_off,
+        LineIcons.bell,
+        color: Color.fromARGB(255, 166, 166, 166),
       ),
     );
   }
@@ -153,7 +212,7 @@ final class EmptyNotificationsCollectionButton extends ConsumerWidget {
         ),
       ),
       icon: const Icon(
-        Icons.abc,
+        LineIcons.bell,
       ),
     );
   }

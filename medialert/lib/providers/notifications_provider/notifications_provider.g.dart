@@ -179,15 +179,14 @@ class _DisableMedicationNotificationsProviderElement
       (origin as DisableMedicationNotificationsProvider).medication;
 }
 
-String _$getNotificationHash() => r'17acb66c51bd5a39d1bb0e3a366031d44f27b59a';
+String _$getNotificationHash() => r'026557455af87fbe63e8e2bf7ad3db6b82265324';
 
 /// See also [getNotification].
 @ProviderFor(getNotification)
 const getNotificationProvider = GetNotificationFamily();
 
 /// See also [getNotification].
-class GetNotificationFamily
-    extends Family<AsyncValue<MedicationNotification?>> {
+class GetNotificationFamily extends Family<AsyncValue<dynamic>> {
   /// See also [getNotification].
   const GetNotificationFamily();
 
@@ -225,8 +224,7 @@ class GetNotificationFamily
 }
 
 /// See also [getNotification].
-class GetNotificationProvider
-    extends AutoDisposeFutureProvider<MedicationNotification?> {
+class GetNotificationProvider extends AutoDisposeFutureProvider<dynamic> {
   /// See also [getNotification].
   GetNotificationProvider(
     int medicationId,
@@ -261,8 +259,7 @@ class GetNotificationProvider
 
   @override
   Override overrideWith(
-    FutureOr<MedicationNotification?> Function(GetNotificationRef provider)
-        create,
+    FutureOr<dynamic> Function(GetNotificationRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -279,7 +276,7 @@ class GetNotificationProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<MedicationNotification?> createElement() {
+  AutoDisposeFutureProviderElement<dynamic> createElement() {
     return _GetNotificationProviderElement(this);
   }
 
@@ -298,15 +295,13 @@ class GetNotificationProvider
   }
 }
 
-mixin GetNotificationRef
-    on AutoDisposeFutureProviderRef<MedicationNotification?> {
+mixin GetNotificationRef on AutoDisposeFutureProviderRef<dynamic> {
   /// The parameter `medicationId` of this provider.
   int get medicationId;
 }
 
 class _GetNotificationProviderElement
-    extends AutoDisposeFutureProviderElement<MedicationNotification?>
-    with GetNotificationRef {
+    extends AutoDisposeFutureProviderElement<dynamic> with GetNotificationRef {
   _GetNotificationProviderElement(super.provider);
 
   @override
