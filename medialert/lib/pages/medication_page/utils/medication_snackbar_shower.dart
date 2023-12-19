@@ -9,7 +9,7 @@ sealed class MedicationSnackbarShower {
         seconds: 2,
       ),
       content: Text(
-        'Medication updated!',
+        'Medication created!',
         style: normalStyle,
       ),
       backgroundColor: AppTheme.backgroundColorForPositiveInteractables,

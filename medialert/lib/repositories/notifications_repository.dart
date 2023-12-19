@@ -7,7 +7,6 @@ import '../models/medication_notification.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
-
 final class NotificationsRepository {
   NotificationsRepository({
     required this.isar,

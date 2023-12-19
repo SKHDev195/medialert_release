@@ -109,7 +109,7 @@ final class MedicationEditForm extends HookConsumerWidget {
                   height: 10,
                 ),
                 MedicationUpdateButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       final medicationDosage = Dosage(
@@ -121,7 +121,7 @@ final class MedicationEditForm extends HookConsumerWidget {
                         medicationDurationType,
                         double.tryParse(medicationScheduleQuantity.text),
                       );
-                      ref.read(
+                      await ref.read(
                         updateMedicationProvider(
                           medication,
                           medicationName.text,

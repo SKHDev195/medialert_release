@@ -21,7 +21,7 @@ final class NotificationEditForm extends HookConsumerWidget {
     required this.medicationId,
   });
 
-  final MedicationNotification? notification;
+  final dynamic? notification;
   final int medicationId;
 
   @override
@@ -99,7 +99,7 @@ final class NotificationEditForm extends HookConsumerWidget {
                       height: 15,
                     ),
                     CreateNotificationButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
                           final schedule = Schedule(
@@ -108,20 +108,25 @@ final class NotificationEditForm extends HookConsumerWidget {
                               notificationScheduleQuantityController.text,
                             ),
                           );
-                          ref.read(
+                          await ref.read(
                             saveNotificationProvider(
                               medication.medicationId,
                               medication.name,
                               medication.dosage,
                               schedule,
                               offset,
-                            ),
+                            ).future,
                           );
 
-                          NotificationScheduler.createRepeatedNotification(
+                          await NotificationScheduler
+                              .createRepeatedNotification(
                             medication,
                             schedule,
                             offset!,
+                          );
+
+                          await ref.refresh(
+                            getNotificationProvider(medicationId).future,
                           );
 
                           NotificationsSnackbarShower
@@ -141,11 +146,14 @@ final class NotificationEditForm extends HookConsumerWidget {
                       height: 15,
                     ),
                     CancelNotificationButton(
-                      onPressed: () {
-                        ref.watch(
+                      onPressed: () async {
+                        await ref.read(
                           disableMedicationNotificationsProvider(
                             medication,
-                          ),
+                          ).future,
+                        );
+                        await ref.refresh(
+                          getNotificationProvider(medicationId).future,
                         );
                         NotificationsSnackbarShower
                             .showNotificationCanceledSnackbar(

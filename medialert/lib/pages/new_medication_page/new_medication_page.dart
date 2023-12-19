@@ -83,7 +83,7 @@ final class NewMedicationPage extends HookConsumerWidget {
                   height: 10,
                 ),
                 MedicationCreationButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       final medicationDosage = Dosage(
@@ -105,7 +105,7 @@ final class NewMedicationPage extends HookConsumerWidget {
                           medicationSpecialNote.text,
                         ),
                       );
-                      ref.refresh(medicationsProvider.future);
+                      await ref.refresh(medicationsProvider.future);
                       MedicationSnackbarShower.showMedicationCreatedSnackbar(
                           context);
                       Navigator.popAndPushNamed(

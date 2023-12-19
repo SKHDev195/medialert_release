@@ -1,3 +1,5 @@
+import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
+
 import '../../models/medication.dart';
 import '../../theme/font_styles.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ final class MedicationsPage extends ConsumerWidget {
     WidgetRef ref,
   ) {
     final medications = ref.watch(medicationsProvider);
+    ref.watch(getNotificationsPermissionStatusProvider.future);
 
     return Scaffold(
       appBar: AppBar(

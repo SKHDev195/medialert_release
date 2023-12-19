@@ -38,7 +38,7 @@ void deleteMedicationDialog(
             ),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               ref.read(
                 deleteMedicationProvider(medication.medicationId),
               );
@@ -47,7 +47,7 @@ void deleteMedicationDialog(
                   medication,
                 ),
               );
-              ref.refresh(medicationsProvider.future);
+              await ref.refresh(medicationsProvider.future);
               MedicationSnackbarShower.showMedicationDeletedSnackbar(
                 context,
               );

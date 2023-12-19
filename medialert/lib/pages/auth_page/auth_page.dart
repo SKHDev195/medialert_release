@@ -1,3 +1,6 @@
+import 'package:medialert/providers/medications_provider/medications_provider.dart';
+import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
+
 import '../widgets/logo.dart';
 import 'package:flutter/material.dart';
 import '../../utils/error_dialog.dart';
@@ -9,8 +12,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:medialert/providers/auth_provider/auth_provider.dart';
 import 'package:medialert/pages/auth_page/widgets/authenticate_button.dart';
 import 'package:medialert/providers/keep_auth_provider/keep_auth_provider.dart';
-
-
 
 final class AuthPage extends HookConsumerWidget {
   const AuthPage({
@@ -27,10 +28,11 @@ final class AuthPage extends HookConsumerWidget {
     late Widget authPage;
 
     ref.listen(getKeepAuthProvider, (previous, next) {
-      if (
-          next.asData != null &&
+      if (next.asData != null &&
           next.asData!.value != null &&
           next.asData!.value!.isEnabled) {
+        ref.refresh(medicationsProvider.future);
+        ref.refresh(getNotificationsPermissionStatusProvider.future);
         Navigator.pushNamed(
           context,
           MedicationsPage.routeName,
