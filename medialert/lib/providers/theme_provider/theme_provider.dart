@@ -1,19 +1,33 @@
-import '../../models/custom_error.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medialert/providers/theme_repository_provider/theme_repository_provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'theme_state.dart';
+import '../../models/theme.dart';
 
-final class ThemeProvider extends StateNotifier<ThemeState> {
-  ThemeProvider()
-      : super(
-          ThemeState.initial(),
-        );
+part 'theme_provider.g.dart';
 
-  void switchTheme() {
-    bool currentTheme = state.isDark;
-    state = state.copyWith(
-      isDark: !currentTheme,
-    );
-  }
+@riverpod
+Future<Theme?> getTheme(GetThemeRef ref) async {
+  final themeRepository =
+      await ref.watch(themeRepositoryInstanceProvider.future);
+  return themeRepository.getTheme();
+}
+
+@riverpod
+Future<void> createTheme(
+  CreateThemeRef ref,
+  Theme theme,
+) async {
+  final themeRepository =
+      await ref.watch(themeRepositoryInstanceProvider.future);
+  await themeRepository.createTheme(theme);
+}
+
+@riverpod
+Future<void> setTheme(
+  SetThemeRef ref,
+  bool value,
+) async {
+  final themeRepository =
+      await ref.watch(themeRepositoryInstanceProvider.future);
+  await themeRepository.setTheme(value);
 }

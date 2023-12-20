@@ -5,8 +5,8 @@ import 'package:local_auth/local_auth.dart';
 import 'utils/notification_controller.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'providers/theme_provider/theme_provider.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'models/theme.dart' as CustomTheme;
 
 @pragma('vm:entry-point')
 void callbackDispatcher() {
@@ -31,8 +31,10 @@ void callbackDispatcher() {
   });
 }
 
-final themeServiceProvider = StateNotifierProvider<ThemeProvider, ThemeState>(
-  (ref) => ThemeProvider(),
+final themeProvider = Provider<CustomTheme.Theme>(
+  (ref) => CustomTheme.Theme(
+    isDark: true,
+  ),
 );
 
 final localAuthProvider = Provider<LocalAuthentication>(
