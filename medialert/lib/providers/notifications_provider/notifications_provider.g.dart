@@ -179,7 +179,7 @@ class _DisableMedicationNotificationsProviderElement
       (origin as DisableMedicationNotificationsProvider).medication;
 }
 
-String _$getNotificationHash() => r'026557455af87fbe63e8e2bf7ad3db6b82265324';
+String _$getNotificationHash() => r'b10dc022fbd02250b973ac8ac7aa979b892f414d';
 
 /// See also [getNotification].
 @ProviderFor(getNotification)
