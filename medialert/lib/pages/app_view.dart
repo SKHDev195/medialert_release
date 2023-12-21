@@ -5,18 +5,13 @@ import 'medication_page/medication_page.dart';
 import '../utils/notification_controller.dart';
 import 'medications_page/medications_page.dart';
 import 'package:medialert/theme/theme_data.dart';
+import '../providers/isar_provider/isar_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import '../providers/keep_auth_provider/keep_auth_provider.dart';
 import 'package:medialert/pages/notification_page/notification_page.dart';
 import 'package:medialert/pages/new_medication_page/new_medication_page.dart';
 import 'package:medialert/pages/global_settings_page/global_settings_page.dart';
-
-
-
-
-
-
 
 final class AppView extends ConsumerStatefulWidget {
   const AppView({
@@ -45,7 +40,6 @@ final class _AppViewState extends ConsumerState<AppView> {
   ) {
     final backupKeepAuth = ref.watch(keepAuthProvider);
 
-
     ref.watch(getKeepAuthProvider.future).then((value) {
       if (value == null) {
         ref.watch(
@@ -53,6 +47,8 @@ final class _AppViewState extends ConsumerState<AppView> {
         );
       }
     });
+
+    ref.watch(isarInstanceProvider.future);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
