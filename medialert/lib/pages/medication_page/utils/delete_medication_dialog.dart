@@ -15,14 +15,10 @@ void deleteMedicationDialog(
   WidgetRef ref,
   Medication medication,
 ) {
-  final themeMode = EasyDynamicTheme.of(context).themeMode;
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: (themeMode == ThemeMode.dark)
-            ? AppTheme.dialogDarkBackgroundColor
-            : AppTheme.dialogLightBackgroundColor,
         title: const Text(
           'Delete Medication',
           style: dialogTitleStyle,

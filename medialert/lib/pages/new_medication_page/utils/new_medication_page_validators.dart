@@ -14,12 +14,13 @@ sealed class NewMedicationPageValidators {
       return 'Type a value';
     }
     final valueAsNum = num.tryParse(value);
+
     if (value.contains('.')) {
       final decimals = valueAsNum!.toString().split('.')[1];
       if (decimals.length > 2) {
         return 'Only two decimal digits';
       }
-    } else {
+    } else if (value.contains(',')) {
       final decimals = valueAsNum!.toString().split(',')[1];
       if (decimals.length > 2) {
         return 'Only two decimal digits';
@@ -39,7 +40,7 @@ sealed class NewMedicationPageValidators {
         if (decimals.length > 2) {
           return 'Only two decimal digits';
         }
-      } else {
+      } else if (value.contains(',')) {
         final decimals = valueAsNum!.toString().split(',')[1];
         if (decimals.length > 2) {
           return 'Only two decimal digits';

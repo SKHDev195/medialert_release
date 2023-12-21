@@ -10,14 +10,10 @@ void signOutDialog(
   BuildContext context,
   WidgetRef ref,
 ) {
-  final themeMode = EasyDynamicTheme.of(context).themeMode;
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: (themeMode == ThemeMode.dark)
-            ? AppTheme.dialogDarkBackgroundColor
-            : AppTheme.dialogLightBackgroundColor,
         title: const Text(
           'Sign Out',
           style: dialogTitleStyle,
