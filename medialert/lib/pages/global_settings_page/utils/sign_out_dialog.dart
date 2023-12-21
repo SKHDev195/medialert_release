@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import '../../../theme/theme_data.dart';
+import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medialert/pages/auth_page/auth_page.dart';
-import 'package:medialert/theme/font_styles.dart';
-
-import '../../../main.dart';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import '../../../providers/keep_auth_provider/keep_auth_provider.dart';
-import '../../../theme/theme_data.dart';
 
 void signOutDialog(
   BuildContext context,
   WidgetRef ref,
 ) {
+  final themeMode = EasyDynamicTheme.of(context).themeMode;
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: ref.watch(themeServiceProvider).isDark
+        backgroundColor: (themeMode == ThemeMode.dark)
             ? AppTheme.dialogDarkBackgroundColor
             : AppTheme.dialogLightBackgroundColor,
         title: const Text(

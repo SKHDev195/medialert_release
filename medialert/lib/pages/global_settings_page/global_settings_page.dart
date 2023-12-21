@@ -1,13 +1,13 @@
-import 'package:medialert/pages/global_settings_page/widgets/sign_out_button.dart';
-import 'package:medialert/pages/widgets/custom_back_button.dart';
-
 import 'widgets/settings_rows.dart';
 import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:medialert/pages/widgets/custom_back_button.dart';
+import 'package:medialert/pages/global_settings_page/widgets/sign_out_button.dart';
 import 'package:medialert/pages/global_settings_page/widgets/manage_notifications_button.dart';
+
 
 final class GlobalSettingsPage extends ConsumerWidget {
   const GlobalSettingsPage({super.key});
@@ -19,8 +19,6 @@ final class GlobalSettingsPage extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    final themeService = ref.watch(themeServiceProvider.notifier);
-    final isDarkThemeEnabled = ref.watch(themeServiceProvider).isDark;
 
     return Scaffold(
       appBar: AppBar(

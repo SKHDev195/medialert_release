@@ -96,14 +96,14 @@ final class NewMedicationPage extends HookConsumerWidget {
                         double.tryParse(medicationScheduleQuantity.text),
                       );
 
-                      ref.read(
+                      await ref.read(
                         createMedicationProvider(
                           medicationName.text,
                           medicationDosage,
                           isSecret,
                           medicationSchedule,
                           medicationSpecialNote.text,
-                        ),
+                        ).future,
                       );
                       await ref.refresh(medicationsProvider.future);
                       MedicationSnackbarShower.showMedicationCreatedSnackbar(
