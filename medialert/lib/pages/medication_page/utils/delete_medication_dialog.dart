@@ -4,6 +4,7 @@ import '../../../theme/theme_data.dart';
 import '../../../models/medication.dart';
 import '../../../theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../../providers/medications_provider/medications_provider.dart';
 import '../../../providers/notifications_provider/notifications_provider.dart';
@@ -14,11 +15,12 @@ void deleteMedicationDialog(
   WidgetRef ref,
   Medication medication,
 ) {
+  final themeMode = EasyDynamicTheme.of(context).themeMode;
   showDialog(
     context: context,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: ref.watch(themeServiceProvider).isDark
+        backgroundColor: (themeMode == ThemeMode.dark)
             ? AppTheme.dialogDarkBackgroundColor
             : AppTheme.dialogLightBackgroundColor,
         title: const Text(
@@ -39,13 +41,13 @@ void deleteMedicationDialog(
           ),
           TextButton(
             onPressed: () async {
-              ref.read(
-                deleteMedicationProvider(medication.medicationId),
+              await ref.read(
+                deleteMedicationProvider(medication.medicationId).future,
               );
-              ref.read(
+              await ref.read(
                 disableMedicationNotificationsProvider(
                   medication,
-                ),
+                ).future,
               );
               await ref.refresh(medicationsProvider.future);
               MedicationSnackbarShower.showMedicationDeletedSnackbar(

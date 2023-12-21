@@ -5,8 +5,8 @@ import 'package:local_auth/local_auth.dart';
 import 'utils/notification_controller.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'models/theme.dart' as CustomTheme;
 
 @pragma('vm:entry-point')
 void callbackDispatcher() {
@@ -31,12 +31,6 @@ void callbackDispatcher() {
   });
 }
 
-final themeProvider = Provider<CustomTheme.Theme>(
-  (ref) => CustomTheme.Theme(
-    isDark: true,
-  ),
-);
-
 final localAuthProvider = Provider<LocalAuthentication>(
   (ref) => LocalAuthentication(),
 );
@@ -56,8 +50,10 @@ Future<void> main() async {
   );
 
   runApp(
-    const ProviderScope(
-      child: AppView(),
+    ProviderScope(
+      child: EasyDynamicThemeWidget(
+        child: const AppView(),
+      ),
     ),
   );
 }

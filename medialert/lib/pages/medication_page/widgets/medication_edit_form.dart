@@ -131,7 +131,7 @@ final class MedicationEditForm extends HookConsumerWidget {
                           medicationSpecialNote.text,
                         ).future,
                       );
-                      ref.refresh(medicationsProvider.future);
+                      await ref.refresh(medicationsProvider.future);
                       MedicationSnackbarShower.showMedicationUpdatedSnackbar(
                         context,
                       );
