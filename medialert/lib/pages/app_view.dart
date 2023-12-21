@@ -48,8 +48,6 @@ final class _AppViewState extends ConsumerState<AppView> {
       }
     });
 
-    ref.watch(isarInstanceProvider.future);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
