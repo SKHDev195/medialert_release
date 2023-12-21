@@ -8,7 +8,6 @@ import 'package:medialert/pages/widgets/custom_back_button.dart';
 import 'package:medialert/pages/global_settings_page/widgets/sign_out_button.dart';
 import 'package:medialert/pages/global_settings_page/widgets/manage_notifications_button.dart';
 
-
 final class GlobalSettingsPage extends ConsumerWidget {
   const GlobalSettingsPage({super.key});
 
@@ -19,7 +18,6 @@ final class GlobalSettingsPage extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -50,7 +48,8 @@ final class GlobalSettingsPage extends ConsumerWidget {
               ),
               ManageNotificationsButton(
                 onPressed: () => AppSettings.openAppSettings(
-                    type: AppSettingsType.notification),
+                  type: AppSettingsType.notification,
+                ),
               ),
               const SizedBox(
                 height: 15,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'widgets/notification_edit_form.dart';
 import 'package:medialert/route_arguments.dart';
-import '../../models/medication_notification.dart';
+import '../widgets/medications_error_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../medication_page/widgets/medication_error_widget.dart';
 import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
 
 final class NotificationPage extends HookConsumerWidget {
@@ -32,7 +31,7 @@ final class NotificationPage extends HookConsumerWidget {
             child: CircularProgressIndicator(),
           ),
         ),
-      AsyncError() => MedicationErrorWidget(medicationId: args.medicationId),
+      AsyncError() => const MedicationsErrorWidget(),
       _ => const Text('Initialising...'),
     };
   }
