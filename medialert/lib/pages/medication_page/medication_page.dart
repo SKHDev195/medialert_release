@@ -2,11 +2,11 @@ import '../../models/medication.dart';
 import 'package:flutter/material.dart';
 import 'package:medialert/route_arguments.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:medialert/pages/widgets/medications_error_widget.dart';
 import 'package:medialert/pages/medication_page/widgets/medication_edit_form.dart';
 import 'package:medialert/providers/medications_provider/medications_provider.dart';
-import 'package:medialert/pages/medication_page/widgets/medication_error_widget.dart';
 
-class MedicationPage extends HookConsumerWidget {
+final class MedicationPage extends HookConsumerWidget {
   const MedicationPage({super.key});
 
   static const routeName = '/medication';
@@ -27,7 +27,7 @@ class MedicationPage extends HookConsumerWidget {
           medication: value,
         ),
       AsyncLoading() => const CircularProgressIndicator(),
-      AsyncError() => MedicationErrorWidget(medicationId: args.medicationId),
+      AsyncError() => const MedicationsErrorWidget(),
       _ => const Text('Initialising...'),
     };
   }

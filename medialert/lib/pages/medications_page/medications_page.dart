@@ -1,15 +1,15 @@
-import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
-
 import '../../models/medication.dart';
 import '../../theme/font_styles.dart';
 import 'package:flutter/material.dart';
 import 'widgets/medications_list.dart';
 import 'widgets/new_medication_button.dart';
-import 'widgets/medications_error_widget.dart';
+import '../widgets/medications_error_widget.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/medications_provider/medications_provider.dart';
 import 'package:medialert/pages/global_settings_page/global_settings_page.dart';
 import 'package:medialert/pages/medications_page/widgets/global_settings_button.dart';
+import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
+
 
 final class MedicationsPage extends ConsumerWidget {
   const MedicationsPage({super.key});
