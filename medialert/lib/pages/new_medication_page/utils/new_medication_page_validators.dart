@@ -9,12 +9,21 @@ sealed class NewMedicationPageValidators {
     return null;
   }
 
-  static String? validateRequiredTextField(String? value) {
+  static String? validateRequiredQuantityField(String? value) {
     if (value == null) {
-      return 'Type a number';
+      return 'Type a value';
     }
-    if (num.tryParse(value) == null) {
-      return 'This value has to be a valid number';
+    final valueAsNum = num.tryParse(value);
+    if (value.contains('.')) {
+      final decimals = valueAsNum!.toString().split('.')[1];
+      if (decimals.length > 2) {
+        return 'Only two decimal digits';
+      }
+    } else {
+      final decimals = valueAsNum!.toString().split(',')[1];
+      if (decimals.length > 2) {
+        return 'Only two decimal digits';
+      }
     }
     return null;
   }
@@ -22,6 +31,20 @@ sealed class NewMedicationPageValidators {
   static String? validateOptionalQuantityField(String? value) {
     if (value != null && num.tryParse(value) == null) {
       return 'This value has to be a valid number';
+    }
+    if (value != null) {
+      final valueAsNum = num.tryParse(value);
+      if (value.contains('.')) {
+        final decimals = valueAsNum!.toString().split('.')[1];
+        if (decimals.length > 2) {
+          return 'Only two decimal digits';
+        }
+      } else {
+        final decimals = valueAsNum!.toString().split(',')[1];
+        if (decimals.length > 2) {
+          return 'Only two decimal digits';
+        }
+      }
     }
     return null;
   }

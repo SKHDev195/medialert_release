@@ -49,7 +49,7 @@ final class MedicationDosageField extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   validator: (value) =>
-                      NewMedicationPageValidators.validateRequiredTextField(
+                      NewMedicationPageValidators.validateRequiredQuantityField(
                     value,
                   ),
                 ),

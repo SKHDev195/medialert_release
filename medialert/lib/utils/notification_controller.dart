@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'dart:isolate';
 import '../pages/app_view.dart';
 import 'package:flutter/material.dart';
+import 'package:medialert/theme/theme_data.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:medialert/pages/medications_page/medications_page.dart';
 
@@ -87,14 +88,14 @@ final class NotificationController {
 
   static Future<void> initializeLocalNotifications() async {
     AwesomeNotifications().initialize(
-      null,
+      "resource://drawable/ic_medicine",
       [
         NotificationChannel(
           channelKey: 'scheduled',
           channelName: 'MediAlert Notifications',
           channelDescription: 'Alerts about medications',
-          defaultColor: Colors.greenAccent,
-          ledColor: Colors.greenAccent,
+          defaultColor: AppTheme.backgroundColorForPositiveInteractables,
+          ledColor: AppTheme.backgroundColorForPositiveInteractables,
           channelShowBadge: true,
           vibrationPattern: lowVibrationPattern,
           importance: NotificationImportance.High,

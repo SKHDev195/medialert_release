@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medialert/pages/widgets/custom_back_button.dart';
 import '../../../models/schedule.dart';
 import '../utils/notification_scheduler.dart';
 import 'package:medialert/theme/font_styles.dart';
@@ -8,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../medications_page/medications_page.dart';
 import '../../../models/medication_notification.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:medialert/pages/widgets/custom_back_button.dart';
 import 'package:medialert/providers/medications_provider/medications_provider.dart';
 import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
 import 'package:medialert/pages/notification_page/widgets/notification_form_fields.dart';
@@ -21,7 +21,7 @@ final class NotificationEditForm extends HookConsumerWidget {
     required this.medicationId,
   });
 
-  final dynamic? notification;
+  final dynamic notification;
   final int medicationId;
 
   @override
@@ -47,7 +47,7 @@ final class NotificationEditForm extends HookConsumerWidget {
 
     final notificationScheduleQuantityController = useTextEditingController(
       text: switch (notification) {
-        != null => notification!.schedule.regularity.toString(),
+        != null => notification!.schedule.regularity.toInt().toString(),
         _ => null,
       },
     );

@@ -19,11 +19,12 @@ void callbackDispatcher() {
       content: NotificationContent(
         id: notificationId!,
         channelKey: 'scheduled',
-        title: 'Important Alert',
+        title: 'MediAlert',
         body: notificationBody,
         payload: {'uuid': 'user-profile-uuid'},
         displayOnBackground: true,
         displayOnForeground: true,
+        criticalAlert: true,
       ),
     );
 
