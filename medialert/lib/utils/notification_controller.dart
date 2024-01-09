@@ -88,7 +88,7 @@ final class NotificationController {
 
   static Future<void> initializeLocalNotifications() async {
     AwesomeNotifications().initialize(
-      "resource://drawable/ic_medicine",
+      'resource://drawable/ic_medicine',
       [
         NotificationChannel(
           channelKey: 'scheduled',
@@ -103,7 +103,6 @@ final class NotificationController {
           criticalAlerts: true,
         ),
       ],
-      debug: true,
     );
   }
 }

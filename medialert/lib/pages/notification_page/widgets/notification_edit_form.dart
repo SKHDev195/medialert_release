@@ -5,7 +5,6 @@ import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../medications_page/medications_page.dart';
-import '../../../models/medication_notification.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:medialert/pages/widgets/custom_back_button.dart';
 import 'package:medialert/providers/medications_provider/medications_provider.dart';

@@ -4,7 +4,6 @@ import 'package:line_icons/line_icons.dart';
 import 'package:medialert/route_arguments.dart';
 import '../medication_page/medication_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:medialert/utils/notification_permission_dialog.dart';
 import 'package:medialert/pages/notification_page/notification_page.dart';
 import 'package:medialert/providers/notifications_provider/notifications_provider.dart';
@@ -37,7 +36,7 @@ final class MedicationEditButton extends ConsumerWidget {
   }
 }
 
-class MedicationNotificationButton extends ConsumerStatefulWidget {
+final class MedicationNotificationButton extends ConsumerStatefulWidget {
   const MedicationNotificationButton({
     super.key,
     required this.medication,

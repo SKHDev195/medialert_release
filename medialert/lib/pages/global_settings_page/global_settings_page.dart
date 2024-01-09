@@ -1,5 +1,4 @@
 import 'widgets/settings_rows.dart';
-import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:medialert/theme/font_styles.dart';
