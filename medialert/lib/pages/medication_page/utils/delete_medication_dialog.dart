@@ -1,10 +1,7 @@
-import 'package:medialert/main.dart';
 import 'package:flutter/material.dart';
-import '../../../theme/theme_data.dart';
 import '../../../models/medication.dart';
 import '../../../theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:medialert/pages/medications_page/medications_page.dart';
 import '../../../providers/medications_provider/medications_provider.dart';
 import '../../../providers/notifications_provider/notifications_provider.dart';

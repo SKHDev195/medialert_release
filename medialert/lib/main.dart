@@ -47,7 +47,6 @@ Future<void> main() async {
   await NotificationController.interceptInitialCallActionRequest();
   await Workmanager().initialize(
     callbackDispatcher,
-    isInDebugMode: true,
   );
 
   runApp(

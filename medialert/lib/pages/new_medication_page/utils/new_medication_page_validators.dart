@@ -3,8 +3,8 @@ sealed class NewMedicationPageValidators {
     if (value == null) {
       return 'Type the medication name';
     }
-    if (value.length > 30) {
-      return 'The medication name has to be shorter than 30 characters';
+    if (value.length > 20) {
+      return 'The medication name has to be shorter than 20 characters';
     }
     return null;
   }

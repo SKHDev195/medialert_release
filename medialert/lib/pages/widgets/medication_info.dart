@@ -31,10 +31,17 @@ final class MedicationInfo extends StatelessWidget {
       _ => 'no',
     };
 
-    String medicationSpecialNoteString = switch (medication.specialNote) {
-      '' => '...',
-      null => '...',
-      (_) => medication.specialNote!,
+    Widget? specialNoteWidget = switch (medication.specialNote) {
+      '' => const SizedBox.shrink(),
+      (_) => Row(
+          children: [
+            const Text('Notes: ', style: boldStyle),
+            Text(
+              medication.specialNote!,
+              style: normalStyle,
+            ),
+          ],
+        ),
     };
 
     return SafeArea(
@@ -59,9 +66,11 @@ final class MedicationInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  medication.name,
-                  style: headingStyle,
+                Expanded(
+                  child: Text(
+                    medication.name,
+                    style: headingStyle,
+                  ),
                 ),
                 MedicationIconButtonsRow(
                   medication: medication,
@@ -92,15 +101,7 @@ final class MedicationInfo extends StatelessWidget {
                 ),
               ],
             ),
-            Row(
-              children: [
-                const Text('Notes: ', style: boldStyle),
-                Text(
-                  medicationSpecialNoteString,
-                  style: normalStyle,
-                ),
-              ],
-            ),
+            specialNoteWidget,
           ],
         ),
       ),

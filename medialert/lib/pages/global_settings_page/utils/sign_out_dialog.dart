@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../theme/theme_data.dart';
 import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:medialert/pages/auth_page/auth_page.dart';
-import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import '../../../providers/keep_auth_provider/keep_auth_provider.dart';
 
 void signOutDialog(

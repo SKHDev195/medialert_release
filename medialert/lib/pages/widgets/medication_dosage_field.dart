@@ -2,7 +2,6 @@ import 'medication_info.dart';
 import '../../models/medication.dart';
 import 'package:flutter/material.dart';
 import '../../../models/dosage_type.dart';
-import 'package:medialert/theme/font_styles.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import '../new_medication_page/utils/new_medication_page_validators.dart';
 
