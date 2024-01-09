@@ -1,3 +1,5 @@
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'pages/app_view.dart';
 import 'models/keep_auth.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,10 @@ final keepAuthProvider = Provider<KeepAuth>(
 );
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(
+    widgetsBinding: widgetsBinding,
+  );
 
   await NotificationController.initializeLocalNotifications();
   await NotificationController.interceptInitialCallActionRequest();
@@ -56,4 +61,5 @@ Future<void> main() async {
       ),
     ),
   );
+  FlutterNativeSplash.remove();
 }

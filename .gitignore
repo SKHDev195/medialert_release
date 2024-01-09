@@ -29,3 +29,5 @@ doc/api/
 .vscode/
 
 firebase_options.dart
+
+generated*
