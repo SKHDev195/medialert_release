@@ -31,7 +31,7 @@ sealed class NewMedicationPageValidators {
 
   static String? validateOptionalQuantityField(String? value) {
     if (value != null && num.tryParse(value) == null) {
-      return 'This value has to be a valid number';
+      return 'Enter a valid number';
     }
     if (value != null) {
       final valueAsNum = num.tryParse(value);
@@ -54,7 +54,7 @@ sealed class NewMedicationPageValidators {
 
   static String? validateRequiredDropdown(dynamic value) {
     if (value == null) {
-      return 'This field is mandatory';
+      return 'Select a value';
     }
     return null;
   }

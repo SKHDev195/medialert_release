@@ -1,7 +1,6 @@
 import '../../models/medication.dart';
 import '../../theme/font_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_container/easy_container.dart';
 import 'package:medialert/utils/fields_transformer.dart';
 import 'package:medialert/pages/widgets/medication_icon_buttons.dart';
 
@@ -21,11 +20,10 @@ final class MedicationInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     String medicationDosageString =
         '${FieldsTransformer.transformQuantityField(medication.dosage.quantity)}${FieldsTransformer.catchDosageType(medication.dosage.dosageType)} ';
-    String medicationScheduleString = switch (medication.schedule) {
-      null => '',
-      (_) =>
-        '${FieldsTransformer.transformScheduleQuantityField(medication.schedule!)}${FieldsTransformer.transformScheduleDurationTypeField(medication.schedule!)}',
-    };
+
+    String medicationScheduleString =
+        '${FieldsTransformer.transformScheduleQuantityField(medication.schedule!)}${FieldsTransformer.transformScheduleDurationTypeField(medication.schedule!)}';
+
     String medicationIsSecretString = switch (medication.isSecret) {
       true => 'yes',
       _ => 'no',

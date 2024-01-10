@@ -94,31 +94,31 @@ class NotificationScheduleField extends ConsumerWidget {
               ),
               Expanded(
                 child: FormBuilderDropdown<DurationType>(
-                    name: 'Duration',
-                    alignment: Alignment.center,
-                    initialValue: initialValue,
-                    decoration: const InputDecoration(
-                      labelText: 'How to measure',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                  name: 'Duration',
+                  alignment: Alignment.center,
+                  initialValue: initialValue,
+                  decoration: const InputDecoration(
+                    labelText: 'How to measure',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                  ),
+                  onChanged: onDurationTypeChanged,
+                  validator: (value) =>
+                      NewMedicationPageValidators.validateOptionalDropdown(
+                          value),
+                  items: DurationType.values.map((DurationType durationType) {
+                    return DropdownMenuItem(
+                      value: durationType,
+                      child: Text(
+                        durationType.prettyName,
+                      ),
+                    );
+                  }).toList()
+                    ..removeWhere(
+                        (element) => element.value! == DurationType.minute)
+                    ..removeWhere(
+                      (element) => (element.value! == DurationType.month),
                     ),
-                    onChanged: onDurationTypeChanged,
-                    validator: (value) =>
-                        NewMedicationPageValidators.validateOptionalDropdown(
-                            value),
-                    items: DurationType.values.map((DurationType durationType) {
-                      return DropdownMenuItem(
-                        value: durationType,
-                        child: Text(
-                          durationType.prettyName,
-                        ),
-                      );
-                    }).toList()
-                    // ..removeWhere(
-                    //     (element) => element.value! == DurationType.minute)
-                    // ..removeWhere(
-                    //   (element) => (element.value! == DurationType.month),
-                    // ),
-                    ),
+                ),
               ),
             ],
           ),

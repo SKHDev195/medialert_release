@@ -11,12 +11,10 @@ sealed class NotificationFormFieldsValidators {
   static String? validateNotificationRegularityField(String? value) {
     if (value == null) {
       return 'Type an integer number';
-    }
-    if (num.tryParse(value) == null) {
+    } else if (num.tryParse(value) == null) {
       return 'This value has to be a valid number';
-    }
-    if ((num.tryParse(value)! % num.tryParse(value)!) != 0) {
-      return 'Type a valid integer number';
+    } else if (num.tryParse(value)! < 1) {
+      return 'Type a number greater than zero';
     }
     return null;
   }

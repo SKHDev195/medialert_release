@@ -51,7 +51,7 @@ final class MedicationScheduleField extends StatelessWidget {
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                   ),
                   validator: (value) =>
-                      NewMedicationPageValidators.validateOptionalTextField(
+                      NewMedicationPageValidators.validateOptionalQuantityField(
                           value),
                 ),
               ),
@@ -66,7 +66,7 @@ final class MedicationScheduleField extends StatelessWidget {
                   initialValue: getCurrentScheduleDurationType(),
                   onChanged: onDurationTypeChanged,
                   validator: (value) =>
-                      NewMedicationPageValidators.validateOptionalDropdown(
+                      NewMedicationPageValidators.validateRequiredDropdown(
                           value),
                   items: DurationType.values.map((DurationType durationType) {
                     return DropdownMenuItem(
@@ -75,7 +75,12 @@ final class MedicationScheduleField extends StatelessWidget {
                         durationType.prettyName,
                       ),
                     );
-                  }).toList(),
+                  }).toList()
+                    ..removeWhere(
+                        (element) => element.value! == DurationType.minute)
+                    ..removeWhere(
+                      (element) => (element.value! == DurationType.month),
+                    ),
                 ),
               ),
             ],

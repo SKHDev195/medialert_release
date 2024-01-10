@@ -1,5 +1,3 @@
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 import 'pages/app_view.dart';
 import 'models/keep_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,7 @@ import 'utils/notification_controller.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 @pragma('vm:entry-point')
